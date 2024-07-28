@@ -1,0 +1,118 @@
+
+$base-color: #2a2a9f;
+$base-color-shade :#2a2a9f40;
+
+
+tbody tr{
+  td{
+    .tabtext{
+      width: 85%;
+    }
+
+  }
+}
+
+h2
+{
+  text-align: center;
+}
+
+.heading{
+  color: $base-color;
+}
+
+.head {
+  font-size: 21px;
+  font-weight: 500;
+}
+
+table{
+  border:1px solid $base-color;
+  border-collapse: collapse;
+
+thead{
+  tr:first-child
+  {
+    background: #2a2a9f40;
+    color: $base-color;
+  }
+  tr:nth-child(2)
+  {
+    background: $base-color;
+    color: #fff;
+  }
+    tr{
+      th{
+      text-align: center;
+      border:1px solid $base-color;
+      border-collapse: collapse;
+      padding: 0.5rem 0.5rem;
+      mat-icon{
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+  tbody{
+    border:1px solid #dee2e6;
+    border-collapse: collapse;
+    tr:last-child{
+      td{
+        font-weight: 700;
+      }
+    }
+    tr{
+
+
+      td{
+        text-align: center;
+        border:1px solid $base-color-shade;
+        border-collapse: collapse;
+        padding: 0.5rem 0.5rem;
+      }
+    }
+  }
+ }
+
+
+
+.mat-dialog-title {
+  position: relative;
+
+  .close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+}
+
+.form-control {
+  display: block;
+  width: 50%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .375rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+
+.buttonCenter {
+  text-align: center;
+
+  button {
+    margin: 0 10px;
+  }
+}

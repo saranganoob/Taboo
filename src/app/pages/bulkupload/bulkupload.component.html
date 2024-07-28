@@ -1,0 +1,213 @@
+<h1>Average Borrowing</h1>
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Submit()">
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm">
+
+      <!-- <mat-form-field class="custom-width">
+        <mat-label>Financial Year</mat-label>
+        <mat-select name="finyear" [(ngModel)]="form.finyear" #finyear="ngModel" required>
+          <mat-option *ngFor="let loop of FinancialYearList" [value]="loop.val">
+            {{loop.val}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="f.submitted && finyear.errors" class="invalid">
+        <div *ngIf="finyear.errors['required']">Financial Year is required</div>
+      </div> -->
+
+      <mat-form-field class="custom-width">
+        <mat-label>Financial Year</mat-label>
+        <mat-select name="fyear" [(ngModel)]="form.fyear" #fyear="ngModel" required>
+          <mat-option *ngFor="let loop of FinancialYearList" [value]="loop.val">
+            {{loop.val}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="f.submitted && fyear.errors" class="invalid">
+        <div *ngIf="fyear.errors['required']">Financial Year is required</div>
+      </div>
+
+
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Ref Month</mat-label>
+        <mat-select name="month" [(ngModel)]="form.month" #month="ngModel" required>
+          <mat-option *ngFor="let loop of MonthList" disabled="false" [value]="loop.name">
+            {{loop.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="f.submitted && month.errors" class="invalid">
+        <div *ngIf="month.errors['required']">Month is required</div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Borrowing</mat-label>
+        <input matInput placeholder="Borrowing" autocomplete="off"
+        name="borrow"
+        [(ngModel)]="form.borrow"
+        #borrow="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && borrow.errors" class="invalid">
+        <div *ngIf="borrow.errors['required']">Borrowing is required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Average Borrowing</mat-label>
+        <input matInput placeholder="Average Borrowing" autocomplete="off"
+        name="avgborrow"
+        [(ngModel)]="form.avgborrow"
+        #avgborrow="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && avgborrow.errors" class="invalid">
+        <div *ngIf="avgborrow.errors['required']">Average Borrowing is required</div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Debit Equity</mat-label>
+        <input matInput placeholder="Debit Equity" autocomplete="off"
+        name="debtequity"
+        [(ngModel)]="form.debtequity"
+        #debtequity="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && debtequity.errors" class="invalid">
+        <div *ngIf="debtequity.errors['required']">Debit Equity is required</div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Cost</mat-label>
+        <input matInput placeholder="Fin Cost" autocomplete="off"
+        name="Fin_Cost"
+        [(ngModel)]="form.Fin_Cost"
+        #Fin_Cost="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && Fin_Cost.errors" class="invalid">
+        <div *ngIf="Fin_Cost.errors['required']">Fin Cost is required</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stop -->
+
+  <div class="row">
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Equity In Crores</mat-label>
+        <input matInput placeholder="Equity In Crores" autocomplete="off"
+        name="EquityInCrores"
+        [(ngModel)]="form.EquityInCrores"
+        #EquityInCrores="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && EquityInCrores.errors" class="invalid">
+        <div *ngIf="EquityInCrores.errors['required']">Equity In Crores is required</div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>Finance Cost(Rs In Cr)</mat-label>
+        <input matInput placeholder="Finance Cost(Rs In Cr)" autocomplete="off"
+        name="fincost"
+        [(ngModel)]="form.fincost"
+        #fincost="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && fincost.errors" class="invalid">
+        <div *ngIf="fincost.errors['required']">Finance Cost is required</div>
+      </div>
+    </div>
+    <div class="col-sm"></div>
+
+
+  </div>
+
+
+</div>
+
+
+<div class="button" style="text-align: center;">
+  <button mat-raised-button color="primary">{{isUpdate?'update':'Submit'}}</button>
+
+</div>
+
+</form>
+
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <td>Financial Year</td>
+          <td>Month</td>
+          <td>Borrowing</td>
+          <td>Average Borrowing</td>
+          <td>Debit Equity</td>
+          <td>Fin Cost</td>
+          <td>Equity In Crores</td>
+          <td>Finance Cost(Rs In Cr)</td>
+          <td>Created Date and Time<br>(DD-MM-YYYY)</td>
+          <td>Modified Date and Time<br>(DD-MM-YYYY)</td>
+          <td>Created By</td>
+          <!-- <td>Edit</td> -->
+      </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngIf="TabDatas?.length > 0; else emptyMsg">
+            <tr *ngFor="let rowdata of TabDatas">
+
+              <td>{{rowdata.FinYear}}</td>
+              <td>{{rowdata.month}}</td>
+              <td>{{rowdata.Borrowing}}</td>
+              <td>{{rowdata.Average_Borrowing}}</td>
+              <td>{{rowdata.Debt_Equity}}</td>
+              <td>{{rowdata.Fin_Cost}}</td>
+              <td>{{rowdata.EquityInCrores}}</td>
+              <td>{{rowdata.FinanceCost}}</td>
+              <td>{{rowdata.createddate | date:'dd-MM-yyyy,hh:mm a'}}</td>
+              <td>{{rowdata.modifieddate | date:'dd-MM-yyyy,hh:mm a'}}</td>
+              <td>{{rowdata.createdby}}</td>
+               <!-- <td>
+                <button mat-icon-button (click)="edit(rowdata)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td> -->
+
+
+
+      </tr>
+    </ng-container>
+      <ng-template #emptyMsg>
+        <tr>
+          <td class="txt-center" colspan="11"><P>No Data Found.</P></td>
+        </tr>
+      </ng-template>
+  </tbody>
+</table>

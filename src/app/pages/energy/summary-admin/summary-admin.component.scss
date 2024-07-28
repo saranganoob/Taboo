@@ -1,0 +1,43 @@
+h1{
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+table{
+  border:1px solid #dee2e6;
+  border-collapse: collapse;
+
+  tr{
+    th{
+      text-align: center;
+      border:1px solid #dee2e6;
+      border-collapse: collapse;
+      padding: 0.5rem 0.5rem;
+      mat-icon{
+        float: right;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  tbody{
+    border:1px solid #dee2e6;
+    border-collapse: collapse;
+    tr{
+      td{
+        text-align: center;
+        border:1px solid #dee2e6;
+        border-collapse: collapse;
+        padding: 0.5rem 0.5rem;
+      }
+    }
+
+    .total
+    {
+      font-weight: 600;
+    }
+
+  }
+ }

@@ -1,0 +1,105 @@
+<h1>EUR INR</h1>
+
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Submit()">
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+      <mat-form-field class="custom-width" appearance="fill">
+        <mat-label>Financial Year</mat-label>
+        <input matInput placeholder="ie..2022-23" autocomplete="off"
+        name="month"
+        [(ngModel)]="form.month"
+        #month="ngModel"
+        disabled
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && month.errors" class="invalid">
+        <div *ngIf="month.errors['required']">Financial Year</div>
+      </div>
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Ref Month</mat-label>
+        <mat-select name="monthq" [(ngModel)]="form.monthq" #monthq="ngModel" required>
+          <mat-option *ngFor="let loop of MonthList" [value]="loop.name" [disabled]=loop.isDisable>
+            {{loop.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="f.submitted && monthq.errors" class="invalid">
+        <div *ngIf="monthq.errors['required']">Month is required</div>
+      </div>
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field class="custom-width">
+        <mat-label>EUR Inr</mat-label>
+        <input matInput placeholder="i.e..Rs. 70.93" autocomplete="off"
+        name="avgexrate"
+        [(ngModel)]="form.avgexrate"
+        #avgexrate="ngModel"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && avgexrate.errors" class="invalid">
+        <div *ngIf="avgexrate.errors['required']">EUR Inr is required</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="button" style="text-align: center;">
+  <button mat-raised-button color="primary">{{isUpdate?'update':'Submit'}}</button>
+
+</div>
+
+</form>
+
+<p class="special">*&nbsp;Upto {{Lmont}}&nbsp;{{FY}}</p>
+
+ <table class="table table-striped">
+  <thead>
+      <tr>
+          <td>Sl. No.</td>
+          <td>Financial Year</td>
+          <td>EUR INR</td>
+          <td>Ref Month</td>
+          <td>Edit</td>
+
+      </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngIf="TabDatas?.length > 0; else emptyMsg">
+            <tr *ngFor="let rowdata of TabDatas">
+
+              <td>{{rowdata.SNO || rowdata.SNo}}</td>
+              <td>{{rowdata.Month}}</td>
+              <td>{{rowdata.EurInr}}</td>
+              <td>{{rowdata.validateMonth}}</td>
+              <td>
+                <button mat-icon-button (click)="edit(rowdata)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+
+      </tr>
+    </ng-container>
+      <ng-template #emptyMsg>
+        <tr>
+          <td class="txt-center" colspan="4"><P>No Data Found.</P></td>
+        </tr>
+      </ng-template>
+  </tbody>
+</table>
+
+
+
+
+

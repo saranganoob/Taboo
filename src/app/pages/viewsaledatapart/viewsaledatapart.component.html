@@ -1,0 +1,232 @@
+<h1>Add / Edit Flash Sales Data - {{DisplayLastMonthYear}}</h1>
+
+<h2>Division : {{LoginData.division}}
+
+  &nbsp; &nbsp; Financial Year : {{Financial_Yea}}</h2>
+
+  <h2 style="float: right;">Rs In Crs</h2>
+
+  <table class="table table-striped" >
+    <thead>
+      <tr style="background: #2a2a9f40;color: #2a2a9f;font-weight: 500 !important;text-align: center; position: sticky;top: 0;z-index: 1;">
+          <td></td>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D=A+B+C</td>
+          <td>E</td>
+          <td>F</td>
+          <td>G=D+E-F</td>
+          <td>H</td>
+          <td>I=G+H</td>
+          <td>J</td>
+          <td>K=I+J</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </thead>
+    <thead>
+      <tr>
+          <td>Unit</td>
+          <td>OE</td>
+          <td>Retail</td>
+          <td>Export</td>
+          <td>Product Sales</td>
+          <td>Db Notes</td>
+          <td>Cr Notes</td>
+          <td>Net Product Sales</td>
+          <td>Scrap Sales</td>
+          <td>Total Sales</td>
+          <td>Cum Adj</td>
+          <td>Adj Sales</td>
+          <td>IPT sales </td>
+          <td>Budgeted Sales</td>
+          <td>Dashboard View</td>
+      </tr>
+  </thead>
+    <tbody>
+
+      <ng-container *ngIf="Sales?.length > 0; else emptyMsg">
+              <tr *ngFor="let row of Sales | paginate : {id: 'PageSecond', itemsPerPage: itemsperpage, currentPage: currentPage,totalItems: totalItems }; let i = index;">
+
+
+            <!-- <td> {{row.Unit}}</td> -->
+
+            <td [ngSwitch]="row.Unit">
+              <span *ngSwitchCase="1500">Fasteners</span>
+              <span *ngSwitchCase="1600">PM</span>
+              <span *ngSwitchCase="1700">Pumps</span>
+              <span *ngSwitchDefault>{{row.Unit}}</span>
+            </td>
+
+            <td>
+              <input type="text" class="tabtext"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+                step="0.01"
+                onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                name="OE"
+                (input)="CalcluateAll(i)"
+                [(ngModel)]="row.OE"
+                [disabled]="row.disable"
+              #Retail="ngModel"
+                required>
+
+            </td>
+
+             <td>
+
+              <input type="text" class="tabtext"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              name="Retail"
+              (input)="CalcluateAll(i)"
+              [(ngModel)]="row.Retail"
+              [disabled]="row.disable"
+              #Retail="ngModel"
+              required>
+
+            </td>
+            <td>
+
+              <input type="text" class="tabtext"
+              name="exportz"
+              (input)="CalcluateAll(i)"
+                [(ngModel)]="row.Export"
+                [disabled]="row.disable"
+                pattern="[0-9]+(\.[0-9][0-9]?)?"
+                step="0.01"
+                onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                #exportz="ngModel"
+                required>
+
+            </td>
+            <td>
+                {{ row.ProductSales | number: '1.2-2'}}
+              </td>
+            <td>
+              <input type="text" class="tabtext" name="Cr_Notes"
+              (input)="CalcluateAll(i)"
+              [(ngModel)]="row.DbNotes"
+              [disabled]="row.disable"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #Cr_Notes="ngModel"
+              required>
+            </td>
+            <td>
+              <input type="text" class="tabtext" name="Db_Notes"
+              (input)="CalcluateAll(i)"
+              [(ngModel)]="row.CrNotes"
+              [disabled]="row.disable"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #Db_Notes="ngModel"
+              required>
+            </td>
+            <td>
+              {{ row.NetProductSales | number: '1.2-2'}}
+            </td>
+            <td>
+               <input type="text" class="tabtext" name="scrapsales"
+               [(ngModel)]="row.ScrapSales"
+               [disabled]="row.disable"
+               #Scrap_Sales="ngModel"
+               onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+               pattern="[0-9]+(\.[0-9][0-9]?)?"
+               step="0.01"
+               (input)="CalcluateAll(i)"
+               required>
+
+              </td>
+            <td>
+              {{row.TotalSales | number: '1.2-2'}}
+            </td>
+            <td>
+              <input type="text" class="tabtext" name="Cum_Adj"
+              [(ngModel)]="row.CumAdj"
+              [disabled]="row.disable"
+              #Cum_Adj="ngModel"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              (input)="CalcluateAll(i)"
+              required>
+
+            </td>
+            <td>
+              {{row.AdjSales | number: '1.2-2'}}
+            </td>
+            <td>
+              <input type="text" class="tabtext" name="IPT_Sales"
+              [(ngModel)]="row.IPTSales"
+              [disabled]="row.disable"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #IPT_Sales="ngModel"
+              required>
+
+            </td>
+            <td>
+              {{row.BudgetedSales | number: '1.2-2'}}
+            </td>
+            <td>
+
+              <button (click)="CreateDasboalink()" mat-icon-button>
+                <mat-icon>visibility</mat-icon>
+              </button>
+
+
+            </td>
+        </tr>
+        <tr style="font-weight: 600;background-color: #a3a0d900;">
+          <td>TOTAL=</td>
+          <td>{{Tot?.OE | number: '1.2-2'}}</td>
+          <td>{{Tot?.Retail| number: '1.2-2'}}</td>
+          <td>{{Tot?.Export| number: '1.2-2'}}</td>
+          <td>{{Tot?.ProductSales| number: '1.2-2'}}</td>
+          <td>{{Tot?.DbNotes| number: '1.2-2'}}</td>
+          <td>{{Tot?.CrNotes| number: '1.2-2'}}</td>
+          <td>{{Tot?.NetProductSales| number: '1.2-2'}}</td>
+          <td>{{Tot?.ScrapSales| number: '1.2-2'}}</td>
+          <td>{{Tot?.TotalSales| number: '1.2-2'}}</td>
+          <td>{{Tot?.CumAdj| number: '1.2-2'}}</td>
+          <td>{{Tot?.AdjSales| number: '1.2-2'}}</td>
+          <td>{{Tot?.IPTSales| number: '1.2-2'}}</td>
+          <td>{{Tot?.BudgetedSales| number: '1.2-2'}}</td>
+          <td>-</td>
+      </tr>
+      </ng-container>
+        <ng-template #emptyMsg>
+          <tr>
+            <td class="txt-center" colspan="17"><P>No Data Found.</P></td>
+          </tr>
+        </ng-template>
+    </tbody>
+  </table>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Remarks</mat-label>
+    <textarea matInput [(ngModel)]="cmnt" placeholder="Leave a comment..."></textarea>
+  </mat-form-field>
+
+
+  <div class="button" style="text-align: center;">
+    <button [disabled]="SalesisSubmitted" mat-raised-button color="primary" (click)="Submit(false)">Save</button>
+    <button [disabled]="SalesisSubmitted" style="margin-left: 10px;" mat-raised-button color="primary" (click)="Submit(true)">Submit</button>
+    <button [disabled]="!SalesisSubmitted" style="margin-left: 10px;" mat-raised-button color="primary" (click)="exportExcel()">Download As Excel</button>
+  </div>
+
+  <h3 [hidden]="!SalesisSubmitted">You have alredy Submitted your Data's for this Month.!</h3>
+  <h3 [hidden]="!HideSubmit">Submit can only Done in First and last day of every Month.!</h3>
+
+
+  <!-- [hidden]="HideSubmit" -->
+
+
+

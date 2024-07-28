@@ -1,0 +1,101 @@
+<h1>EBITDA for the Year {{DisplayLastMonthYear}}</h1>
+
+<!-- <p> if Today = {{today}}</p> -->
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Submit()">
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm">
+
+      <mat-form-field class="custom-width" appearance="fill">
+        <mat-label>Financial Year</mat-label>
+        <input matInput placeholder="ie..2022-23" autocomplete="off"
+        name="month"
+        [(ngModel)]="form.month"
+        #month="ngModel"
+        disabled
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && month.errors" class="invalid">
+        <div *ngIf="month.errors['required']">Financial Year</div>
+      </div>
+
+    </div>
+
+    <div class="col-sm">
+
+      <mat-form-field class="custom-width">
+        <mat-label>EBITDA GR</mat-label>
+        <input matInput placeholder="ie.17.50" autocomplete="off"
+        name="ebita"
+        [(ngModel)]="form.ebita"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        #ebita="ngModel"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && ebita.errors" class="invalid">
+        <div *ngIf="ebita.errors['required']">EBITDA GR is required</div>
+      </div>
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field class="custom-width">
+        <mat-label>EBIT GR</mat-label>
+        <input matInput placeholder="ie.19.20" autocomplete="off"
+        name="ebit"
+        [(ngModel)]="form.ebit"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        #ebit="ngModel"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && ebit.errors" class="invalid">
+        <div *ngIf="ebit.errors['required']">EBIT GR is required</div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+<div class="button" style="text-align: center;">
+  <button mat-raised-button color="primary">{{isUpdate?'update':'Submit'}}</button>
+
+</div>
+
+</form>
+
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <td>Sl. No.</td>
+          <td>EBITDA GR</td>
+          <td>EBIT GR</td>
+          <td>Edit</td>
+      </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngIf="TabDatas?.length > 0; else emptyMsg">
+            <tr *ngFor="let rowdata of TabDatas">
+
+              <td>{{rowdata.SNO}}</td>
+              <td>{{rowdata.Month}}</td>
+              <td>{{rowdata.AvgExrate}}</td>
+               <td>
+                <i (click)="edit(rowdata)" class='far fa-edit' style='font-size:17px'></i>
+              </td>
+
+      </tr>
+    </ng-container>
+      <ng-template #emptyMsg>
+        <tr>
+          <td class="txt-center" colspan="11"><P>No Data Found.</P></td>
+        </tr>
+      </ng-template>
+  </tbody>
+</table>

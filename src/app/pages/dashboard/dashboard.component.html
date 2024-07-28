@@ -1,0 +1,107 @@
+<h1>Welcome Back..!  {{LoginData.employeename}}</h1>
+<h2>Role Type : {{LoginData.EmployeeType}}</h2>
+
+
+<!-- {{bardata[5]?.completedcount}} -->
+
+<h1 style="text-align: center;" *ngIf="LoginData.EmployeeType=='sales' && LoginData.subusertype==1">Sales Revenue Data - {{DisplayLastMonthYear}}</h1>
+
+    <div class="skills"  *ngIf="LoginData.EmployeeType=='sales' && LoginData.subusertype==1">
+
+
+      <div class="charts">
+        <div class="chart chart--dev">
+          <span class="chart__title">Divisions</span>
+          <ul class="chart--horiz" >
+
+            <span [ngSwitch]="bardata[0]?.completedcount">
+              <li *ngSwitchCase="0" class="chart__bar_red_full" style="width: 50%;">
+              <span class="chart__label">
+                FD
+              </span>
+            </li>
+
+            <li *ngSwitchCase="4" class="chart__bar_green_full" style="width: 50%;">
+              <span class="chart__label">
+                FD
+              </span>
+            </li>
+
+            <li *ngSwitchDefault class="chart__bar_green_full" style="width: 50%;">
+              <span class="chart__label">
+                FD
+              </span>
+            </li>
+          </span>
+
+          <li [class]="bardata[1]?.completedcount==0?'chart__bar_red_full' : 'chart__bar_green_full'" style="width: 44%;">
+            <span class="chart__label">
+              ASD
+            </span>
+          </li>
+
+          <li [class]="bardata[2]?.completedcount==0?'chart__bar_red_full' : 'chart__bar_green_full'" style="width: 50%;">
+            <span class="chart__label">
+              HWF
+            </span>
+          </li>
+
+          <li [class]="bardata[3].completedcount==0?'chart__bar_red_full' : 'chart__bar_green_full'" style="width: 45%;">
+            <span class="chart__label">
+              RCA
+            </span>
+          </li>
+
+          <li [class]="bardata[4]?.completedcount==0?'chart__bar_red_full' : 'chart__bar_green_full'" style="width: 49%;">
+            <span class="chart__label">
+              PTC
+            </span>
+          </li>
+
+          <span [ngSwitch]="bardata[5]?.completedcount">
+
+            <li *ngSwitchCase="0" class="chart__bar_red_full" style="width: 51%;">
+              <span class="chart__label">
+                MFD
+              </span>
+            </li>
+
+            <li *ngSwitchCase="5" class="chart__bar_green_full" style="width: 51%;">
+              <span class="chart__label">
+                MFD
+              </span>
+            </li>
+
+            <li *ngSwitchDefault class="chart__bar_green_full" style="width: 51%;">
+              <span class="chart__label">
+                MFD
+              </span>
+            </li>
+          </span>
+
+          <li [class]="bardata[6]?.completedcount==0?'chart__bar_red_full' : 'chart__bar_green_full'" style="width: 47%;">
+            <span class="chart__label">
+              Autolec
+            </span>
+          </li>
+
+            <li [class]="bardata[7].completedcount==0?'chart__bar_red_full' : 'chart__bar_green_full'" style="width: 48%;">
+              <span class="chart__label">
+                UKD
+              </span>
+            </li>
+
+
+
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="LoginData.EmployeeType=='energy'">
+    <app-barchart></app-barchart>
+  </div>

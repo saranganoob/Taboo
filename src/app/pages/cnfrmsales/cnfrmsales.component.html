@@ -1,0 +1,35 @@
+<section>
+	<div class="container">
+		<div class="dialog-main">
+			<div class="row">
+				<div class="dialog-title">
+					<h3>Save Sale Data</h3>
+					<a href="javascript:void(0)" (click)="close(false)"><span class="material-icons">
+							close
+						</span></a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-main">
+					<div class="row">
+						<div class="col">
+							<div class="single-form"><br>
+
+                <h2>Do you want to Save this Record ?</h2>
+
+                  <div class="dow_button">
+                    <button mat-raised-button color="warn" (click)="close(true)" >Confirm</button>
+                    <button mat-raised-button color="primary" (click)="close(false)" style="margin-left: 10px;">Close</button>
+                    </div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>

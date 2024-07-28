@@ -1,0 +1,122 @@
+$base-color: #2a2a9f;
+
+::ng-deep .mat-checkbox-checked.mat-accent {
+  .mat-checkbox-ripple .mat-ripple-element {
+      background-color: #2a2a9f !important;
+  }
+
+  .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+      background-color: #2a2a9f;
+   }
+}
+
+
+
+::ng-deep .mat-checkbox-checked.mat-accent.mat-checkbox-disabled .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color:#d9d9d9 !important;
+}
+
+::ng-deep .mat-checkbox.mat-accent {
+  .mat-checkbox-ripple .mat-ripple-element {
+      background-color: #ffffff !important;
+  }
+}
+
+::ng-deep .mat-checkbox-frame
+{
+  border-color: #8888cf;
+  transition: color 0.5s ease;
+}
+
+::ng-deep .mat-tab-label {
+  background-color: #2a2a9f;
+
+}
+
+
+// span {
+//   background-color: yellow;
+//   font-weight: 600;
+// }
+
+p{
+  margin-top: 5px;
+}
+
+h1{
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.data-selected {
+  background-color: #DEEDF9;
+}
+.tabtext{
+  width: 85%;
+}
+.seldiv{
+  color: #2a2a9f;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.example-full-width {
+  width: 100%;
+  padding: 0% 20% 0% 20%;
+}
+
+
+table {
+  margin-top: 3%;
+  tbody tr{
+    text-align: center;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+
+  tbody tr:last-child
+  {
+border-bottom: 1.5px solid $base-color;
+  }
+
+  tbody tr:nth-of-type(even)
+  {
+background-color: #2a2a9f21
+  }
+
+  tbody tr:nth-of-type(odd)
+  {
+background-color: #fff
+  }
+
+
+  thead td {
+
+    text-align: center;
+    padding: 15px 5px 15px 5px;
+    }
+
+    thead td:last-child
+    {
+      border-top-right-radius: 3px;
+    }
+
+    thead td:first-child
+    {
+      border-top-left-radius: 3px;
+    }
+
+  thead tr {
+    background: $base-color;
+    color: #fff;
+    font-weight: 500 !important;
+    text-align: center;
+  }
+
+}
+

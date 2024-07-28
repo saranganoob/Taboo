@@ -1,0 +1,73 @@
+$sflColor: #2a2a9f;
+.password-view a {
+	position: absolute;
+	right: 0;
+	top: 0px;
+	color: #8c8c8cba;
+}
+section {
+	mat-form-field {
+		width: 100%;
+	}
+	& .title-sec h3 {
+		margin-bottom: 0 !important;
+    text-align: center;
+    font-weight: 500;
+
+	}
+
+		& .forgot-inner {
+			padding: 15px;
+			margin: 20px auto;
+			display: block;
+			width: 75%;
+			box-shadow: 0px 4px 12px grey;
+      background-color: #fff;
+			border-radius: 5px;
+			& form {
+				width: 100%;
+				& .single-form {
+					& .error {
+						color: red;
+					}
+				}
+				& .btn-sec {
+					text-align: center;
+					margin: 5px 0px;
+
+					button {
+						background: #2a2a9f;
+					}
+				}
+			}
+			& h4 {
+				text-align: center;
+				font-weight: 500 !important;
+				color: #2a2a9f;
+				border-bottom: 1.5px double #ccc;
+				padding: 10px;
+			}
+		}
+	}
+
+  table{
+    tbody
+    {
+      background-color: #fff
+    }
+    tbody tr:last-child
+    {
+  border-bottom: 1.5px solid #fff;
+    }
+
+    tbody tr:nth-of-type(even)
+    {
+  background-color: #fff
+    }
+
+    tbody tr:nth-of-type(odd)
+    {
+  background-color: #fff
+    }
+
+  }

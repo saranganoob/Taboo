@@ -1,0 +1,105 @@
+
+<h1>Sales Data Upload</h1>
+
+<div class="form-group" >
+  <div class="mb-3">
+    <input class="form-control" #fileInput type="file" id="formFileMultiple" accept=".xlsx, .xls, .csv"  (change)="fileChangeZ($event) ">
+    <p style="text-align: center;color: red;">Please Upload only .xlsx file</p>
+  </div>
+
+  </div>
+
+<div *ngIf="Sampleimg">
+  <h2>Sample Excel Format</h2>
+  <img src="./assets/Images/excel2.PNG" class="center" alt="Excel image">
+</div>
+
+
+  <div *ngIf="showSpinner" class="spinner-border" style="width: 3rem; height: 3rem; margin-left: 50%;" role="status">
+    <span class="sr-only"></span>
+  </div>
+
+
+  <h2 *ngIf="ShowError">Your Excel File has Mismatched Data..!<h2>
+    <h3 *ngIf="ShowError">Kindly Recheck and Upload<h3>
+
+
+
+  <table class="table table-striped" *ngIf="ShowErrorTable">
+    <thead>
+      <tr>
+        <th>Row</th>
+        <th>Column</th>
+        <th>Error Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of TabDetails">
+        <td>{{data.Row}}</td>
+        <td>{{data.Cell_No}}</td>
+        <td>{{data.ErrorVal}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="button" style="text-align: center;">
+    <button mat-raised-button color="primary" (click)="close()">Close</button>
+  </div>
+
+
+  <!-- <table class="table table-striped" *ngIf="ShowInsertedValTable">
+    <thead>
+        <tr>
+            <td>Division</td>
+            <td>Unit</td>
+            <td>OE</td>
+            <td>Retail</td>
+            <td>Export</td>
+            <td>Product Sales</td>
+            <td>Cr Notes</td>
+            <td>Net Product Sales</td>
+            <td>Scrap Sales</td>
+            <td>Total Sales</td>
+            <td>Cum Adj</td>
+            <td>Adj Sales</td>
+            <td>Month</td>
+            <td>Financial</td>
+            <td>createdby</td>
+            <td>createddatetime</td>
+
+        </tr>
+    </thead>
+    <tbody>
+
+      <ng-container *ngIf="TabDatas?.length > 0; else emptyMsg">
+              <tr *ngFor="let rowdata of TabDatas">
+            <td >{{rowdata.Division}}</td>
+            <td> {{rowdata.Unit}}</td>
+            <td> {{rowdata.OE }}</td>
+             <td>{{ rowdata.Retail}}</td>
+            <td> {{rowdata.Export}}</td>
+            <td> {{rowdata.ProductSales}}</td>
+            <td> {{rowdata.CrNotes}}</td>
+            <td> {{rowdata.NetProductSales}}</td>
+            <td> {{rowdata.ScrapSales}}</td>
+            <td> {{rowdata.TotalSales}}</td>
+            <td> {{rowdata.CumAdj}}</td>
+            <td> {{rowdata.AdjSales}}</td>
+            <td> {{rowdata.Month}}</td>
+            <td> {{rowdata.FinancialYear}}</td>
+            <td> {{rowdata.createdby}}</td>
+            <td> {{rowdata.createddatetime}}</td>
+
+        </tr>
+      </ng-container>
+        <ng-template #emptyMsg>
+          <tr>
+            <td class="txt-center" colspan="16"><P>No Data Found.</P></td>
+          </tr>
+        </ng-template>
+    </tbody>
+  </table> -->
+
+
+

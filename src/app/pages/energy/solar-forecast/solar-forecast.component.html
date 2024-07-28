@@ -1,0 +1,176 @@
+<h1>Solar Forecast &nbsp; FY: {{ currentYear }} &nbsp; Quarter: {{ currentQuarter }}</h1>
+
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && ApplyParticular()">
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Value</mat-label>
+        <input matInput
+        name="NumVal"
+        [(ngModel)]="forecastData.NumVal"
+        #NumVal="ngModel"
+        required
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null">
+        <mat-error *ngIf="f.submitted && NumVal.errors &&NumVal.errors['required'] " >Enter Value</mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field class="example-full-width" (click)="drangePicker.open()">
+        <mat-label>Date</mat-label>
+        <mat-datepicker-toggle matPrefix [for]="drangePicker" ></mat-datepicker-toggle>
+
+        <mat-date-range-input
+        [rangePicker]="drangePicker"
+         [min]="today"
+         [max]="endingDate">
+          <input matStartDate
+          placeholder="Start date"
+           name="Sdate"
+           [(ngModel)]="forecastData.Sdate"
+           #Sdate="ngModel"
+           required>
+
+          <input matEndDate
+          placeholder="End date"
+          name="Edate"
+          [(ngModel)]="forecastData.Edate"
+          #Edate="ngModel">
+
+        </mat-date-range-input>
+
+        <mat-date-range-picker #drangePicker>
+
+        </mat-date-range-picker>
+        <mat-error *ngIf="f.submitted && Sdate.errors &&Sdate.errors['required'] " >Select Date</mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Sunday</mat-label>
+
+        <mat-select
+        required
+        name="Sundate"
+        [(ngModel)]="forecastData.Sundate"
+        #Sundate="ngModel">
+          <mat-option *ngFor="let loop of Sunday" [value]="loop.value" >
+            {{loop.Name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.submitted && Sundate.errors && Sundate.errors['required'] " >Select a type</mat-error>
+      </mat-form-field>
+
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Column</mat-label>
+
+        <mat-select
+        required
+        name="column"
+        [(ngModel)]="forecastData.column"
+        #column="ngModel"
+        >
+          <mat-option *ngFor="let loop of columns" [value]="loop.value" >
+            {{loop.Name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.submitted && column.errors && column.errors['required'] " >Select Column</mat-error>
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="col-sm">
+
+      <div>
+        <button mat-raised-button color="primary">Fill</button>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+</form>
+
+<h1>HTSC : {{LoginData.location}} </h1>
+<span style="color: red;font-size: 17px;font-weight: 600;">Note : Please Enter 0 for C3</span>
+  <table class="table table-striped tablecommon" >
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Day</th>
+        <th>C1</th>
+        <th>C2</th>
+        <th>C3</th>
+        <th>C4</th>
+        <th>C5</th>
+        <th>C</th>
+        <th>Remarks in case of any deviation from projection</th>
+        <th>Edit / Save</th>
+      </tr>
+      <tr>
+        <th colspan="2">Timing</th>
+        <th>{{Timing.c1timing || '-'}}</th>
+        <th>{{Timing.c2timing || '-'}}</th>
+        <th>{{Timing.c3timing || '-'}}</th>
+        <th>{{Timing.c4timing || '-'}}</th>
+        <th>{{Timing.c5timing || '-'}}</th>
+        <th colspan="3">HTSC : {{LoginData.location}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let day of daysData;let i = index" [ngClass]="day.date==(today | date:'YYYY-MM-dd')?'today':''">
+        <td [attr.id]="(today | date:'dd-MMM-YYYY') === (day.date | date:'dd-MMM-YYYY') ? 'scrollDate' : ''">{{ day.date  | date:'dd-MMM-YYYY'}}</td>
+        <td [ngClass]="day.day=='Sunday'?'sunday':''">{{day.day}}</td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" step="0.01" (input)="TextType(day.C1_value,day,i,'c1')" [disabled]="day.EnableText" [(ngModel)]="day.C1_value" onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null" ></td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" step="0.01" (input)="TextType(day.C2_value,day,i,'c2')" [disabled]="day.EnableText" [(ngModel)]="day.C2_value" onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null" ></td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" step="0.01" (input)="TextType(day.C3_value,day,i,'c3')" [disabled]="day.EnableText" [(ngModel)]="day.C3_value" onkeypress="return String.fromCharCode(event.charCode).match(/[^.0]/g) === null" ></td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" step="0.01" (input)="TextType(day.C4_value,day,i,'c4')" [disabled]="day.EnableText" [(ngModel)]="day.C4_value" onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null" ></td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" step="0.01" (input)="TextType(day.C5_value,day,i,'c5')" [disabled]="day.EnableText" [(ngModel)]="day.C5_value" onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null" ></td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" step="0.01" (input)="TextType(day.C_value,day,i,'c')"   [disabled]="true" [(ngModel)]="day.C_value"  onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null" ></td>
+        <td><input [ngClass]="day.day=='Sunday'?'sundaytxt':''" type="text" class="tabtext" [disabled]="day.EnableText"  [(ngModel)]="day.Remarks" ></td>
+        <td>
+          <button mat-icon-button (click)="edit(day,i,day.EnableText)" [disabled]="day.EnableEdit">
+            <mat-icon>save</mat-icon>
+          </button>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Total</td>
+        <td>{{Total?.C1_value}}</td>
+        <td>{{Total?.C2_value}}</td>
+        <td>{{Total?.C3_value}}</td>
+        <td>{{Total?.C4_value}}</td>
+        <td>{{Total?.C5_value}}</td>
+        <td>{{Total?.C_value}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+  <div class="center">
+    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    <button mat-raised-button color="primary" (click)="download()">Download As Excel</button>
+  </div>
+
+
+

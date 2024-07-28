@@ -1,0 +1,112 @@
+<h2 mat-dialog-title class="heading">
+
+  FTM YTM Data for {{LoginData.division}} for month of {{Lastmonth | date:'MMMM'}} FY {{CurrentFinYear}}
+
+  <span class="close-icon" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </span>
+</h2>
+
+
+<div class="d-flex justify-content-around">
+
+
+  <h2>Division : {{LoginData.division}}</h2>
+
+  <mat-form-field class="custom-width">
+    <mat-label>Plant</mat-label>
+    <mat-select name="Plant" (selectionChange)="GetFtmYtm($event)"  [(ngModel)]="SelUnitName">
+      <mat-option *ngFor="let loop of Unitlist" [value]="loop.UnitName">{{ loop.UnitName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th colspan='3' >Adjustment for the Month (FTM) </th>
+        </tr>
+
+        <tr>
+          <th>Segment</th>
+          <th>Reason</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="FTM.length>0; else emptymsg">
+        <tr *ngFor="let unit of FTM; let i = index" >
+          <td>{{unit.segment}}</td>
+          <td>{{unit.reason}}</td>
+          <td>{{unit.values}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">TOTAL : </td>
+          <td>{{FTM_Tot}}</td>
+        </tr>
+      </ng-container>
+      <ng-template #emptymsg>
+        <tr>
+          <td class="txt-center" colspan="4">No Data Found.</td>
+        </tr>
+      </ng-template>
+      </tbody>
+      </table>
+
+
+    </div>
+    <div class="col-sm">
+
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th colspan='3' >Adjustment for the Year (YTM) </th>
+
+        </tr>
+
+        <tr>
+          <th>Segment</th>
+          <th>Reason</th>
+          <th>Value</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="YTM.length>0; else emptymsg">
+        <tr *ngFor="let unit of YTM; let i = index">
+          <td>{{unit.segment}}</td>
+          <td>{{unit.reason}}</td>
+          <td>{{unit.values}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">TOTAL : </td>
+          <td>{{YTM_Tot}}</td>
+        </tr>
+      </ng-container>
+      <ng-template #emptymsg>
+        <tr>
+          <td class="txt-center" colspan="4">No Data Found.</td>
+        </tr>
+      </ng-template>
+      </tbody>
+      </table>
+
+
+
+    </div>
+
+  </div>
+
+  <div class="buttonCenter">
+  <button mat-raised-button color="primary" (click)="close()">Close</button>
+</div>
+</div>

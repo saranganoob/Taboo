@@ -1,0 +1,167 @@
+<h2 mat-dialog-title>
+  Provisional Entry for  {{LoginData.division}} for month of {{Lastmonth | date:'MMMM'}} FY {{CurrentFinYear}}
+  <span class="close-icon" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </span>
+</h2>
+
+
+<div class="d-flex justify-content-around">
+
+
+  <h2>Division : {{LoginData.division}}</h2>
+
+  <mat-form-field class="custom-width">
+    <mat-label>Plant</mat-label>
+    <mat-select name="Plant"   [(ngModel)]="SelUnitName">
+      <mat-option *ngFor="let loop of Unitlist" [value]="loop.UnitName">{{ loop.UnitName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+      <form [formGroup]="FTMForm" (ngSubmit)="submit()">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th colspan='3' >Adjustment for the Month (FTM) <mat-icon (click)="addUnitftm()">note_add</mat-icon> </th>
+            </tr>
+
+            <tr>
+              <th>Segment</th>
+              <th>Reason</th>
+              <th>Value</th>
+
+            </tr>
+          </thead>
+          <tbody formArrayName="ftm">
+            <tr *ngFor="let unit of ftm.controls; let i = index" [formGroupName]="i">
+              <td>
+
+
+                <mat-form-field class="custom-width">
+                  <mat-label>Segment</mat-label>
+                  <mat-select name="Segment" formControlName="segment" (selectionChange)="setReason($event.value,i)" required>
+                    <mat-option *ngFor="let segmen of Segmentlist" [value]="segmen.Name">{{ segmen.Name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <div class="error" *ngIf="ftm.controls[i].get('segment')?.hasError('required') && ftm.controls[i].get('segment')?.touched">
+                  Segment is required.
+                </div>
+
+              </td>
+              <td>
+
+                <mat-form-field class="custom-width">
+                  <mat-label>Reason</mat-label>
+                  <mat-select name="Reason" formControlName="reason" required>
+                    <mat-option *ngFor="let reas of ReasonCommon[i]" [value]="reas.reason">{{ reas.reason }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <div class="error" *ngIf="ftm.controls[i].get('reason')?.hasError('required') && ftm.controls[i].get('reason')?.touched">
+                  Reason is required.
+                </div>
+              </td>
+              <td><input type="text" class="tabtext" onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9.-]/) === null" required formControlName="values">
+
+                <div class="error" *ngIf="ftm.controls[i].get('values')?.hasError('required') && ftm.controls[i].get('values')?.touched">
+                  Reason is required.
+                </div>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- <div class="buttonCenter">
+          <button mat-raised-button color="primary" >Submit</button>
+        </div> -->
+
+      </form>
+
+    </div>
+    <div class="col-sm">
+
+
+       <form [formGroup]="YTMForm">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th colspan='3' >Adjustment for the Month (YTM) <mat-icon (click)="addUnitytm()">note_add</mat-icon> </th>
+            </tr>
+
+            <tr>
+              <th>Segment</th>
+              <th>Reason</th>
+              <th>Value</th>
+
+            </tr>
+          </thead>
+          <tbody formArrayName="ytm">
+            <tr *ngFor="let unit of ytm.controls; let j = index" [formGroupName]="j">
+              <td>
+
+                <mat-form-field class="custom-width">
+                  <mat-label>Segment</mat-label>
+                  <mat-select name="Segment" formControlName="segment" (selectionChange)="setReasonj($event.value,j)" required>
+                    <mat-option *ngFor="let segmen of Segmentlist" [value]="segmen.Name">{{ segmen.Name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <div class="error" *ngIf="ytm.controls[j].get('segment')?.hasError('required') && ytm.controls[j].get('segment')?.touched">
+                  Segment is required.
+                </div>
+
+              </td>
+              <td>
+
+                <mat-form-field class="custom-width">
+                  <mat-label>Reason</mat-label>
+                  <mat-select name="Reason" formControlName="reason">
+                    <mat-option *ngFor="let reas of ReasonCommonj[j]" [value]="reas.reason">{{ reas.reason }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <div class="error" *ngIf="ytm.controls[j].get('reason')?.hasError('required') && ytm.controls[j].get('reason')?.touched">
+                  Reason is required.
+                </div>
+
+
+              </td>
+              <td><input type="text" class="tabtext" onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9.-]/) === null" formControlName="values">
+
+                <div class="error" *ngIf="ytm.controls[j].get('values')?.hasError('required') && ytm.controls[j].get('values')?.touched">
+                  Value is required.
+                </div>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="buttonCenter">
+  <button mat-raised-button color="primary" [disabled]="ftm.value.length==0 && ytm.value.length==0" (click)="insertFTM()">Submit</button>
+</div>
+</div>
+

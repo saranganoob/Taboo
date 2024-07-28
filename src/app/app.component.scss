@@ -1,0 +1,179 @@
+// Loader CSS Start
+.bg.loader-sec {
+  position: fixed;
+  top: 0;
+  background: #ffffff91;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+}
+.loader {
+  width: 100px;
+  /* height: 100px; */
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+  top: 40%;
+}
+
+/* LOADER 2 */
+
+#loader-2 span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  // background-color: #f5901f;
+  margin: 35px 5px;
+}
+
+#loader-2 span:nth-child(1) {
+  animation: bounce 1s ease-in-out 0.66s infinite;
+  background-color: #065B80;
+}
+
+#loader-2 span:nth-child(2) {
+  animation: bounce 1s ease-in-out 0.33s infinite;
+  background-color: #065B80;
+}
+
+#loader-2 span:nth-child(3) {
+  animation: bounce 1s ease-in-out 0.66s infinite;
+  background-color: #065B80;
+}
+
+@keyframes bounce {
+  0%,
+  75%,
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  25% {
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+}
+
+.dots {
+  margin-top: 34%;
+  margin-left: 10%;
+  width: 72px;
+  height: 17.3px;
+  background: radial-gradient(circle closest-side,#065b80 90%,#0000) 0%   50%,
+       radial-gradient(circle closest-side,#065b80 90%,#0000) 50%  50%,
+       radial-gradient(circle closest-side,#065b80 90%,#0000) 100% 50%;
+  background-size: calc(100%/3) 100%;
+  background-repeat: no-repeat;
+  animation: dots-zcf63l 1s infinite linear;
+}
+
+@keyframes dots-zcf63l {
+  33% {
+     background-size: calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%;
+  }
+
+  50% {
+     background-size: calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%;
+  }
+
+  66% {
+     background-size: calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%;
+  }
+}
+
+
+.spinner {
+position: relative;
+width: 15px;
+height: 15px;
+left: 40%;
+right: 50%;
+
+margin-top: 34%;
+//   margin-left: 10%;
+}
+
+.spinner div {
+animation: spinner-4t3wzl 1.875s infinite backwards;
+background-color: #232a7a;
+border-radius: 50%;
+height: 65%;
+position: absolute;
+width: 65%;
+}
+
+.spinner div:nth-child(1) {
+animation-delay: 0.15s;
+background-color: #232a7a;
+}
+
+.spinner div:nth-child(2) {
+animation-delay: 0.3s;
+background-color: #4751c2;
+}
+
+.spinner div:nth-child(3) {
+animation-delay: 0.45s;
+background-color: #696ea8;
+}
+
+.spinner div:nth-child(4) {
+animation-delay: 0.6s;
+background-color: #0f1dbd;
+}
+
+.spinner div:nth-child(5) {
+animation-delay: 0.75s;
+background-color: #4b57d6;
+}
+
+@keyframes spinner-4t3wzl {
+0% {
+   transform: rotate(0deg) translateY(-200%);
+}
+
+60%, 100% {
+   transform: rotate(360deg) translateY(-200%);
+}
+}
+
+//bars
+
+.bars {
+  width: 36px;
+  height: 48px;
+  --c: linear-gradient(#2a2a9f  0 0);
+  background: var(--c) 0%   50%,
+         var(--c) 50%  50%,
+         var(--c) 100% 50%;
+  background-size: 7.2px 50%;
+  background-repeat: no-repeat;
+  animation: bars-7s9ul0sm 1s infinite linear alternate;
+  margin-left: 27%;
+  margin-top: 14%;
+}
+
+@keyframes bars-7s9ul0sm {
+  20% {
+     background-size: 7.2px 20% ,7.2px 50% ,7.2px 50%;
+  }
+
+  40% {
+     background-size: 7.2px 100%,7.2px 20% ,7.2px 50%;
+  }
+
+  60% {
+     background-size: 7.2px 50% ,7.2px 100%,7.2px 20%;
+  }
+
+  80% {
+     background-size: 7.2px 50% ,7.2px 50% ,7.2px 100%;
+  }
+}
+

@@ -1,0 +1,223 @@
+/* You can add global styles to this file, and also import other style files */
+$base-color: #2a2a9f;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+button.mat-focus-indicator.mat-stroked-button.mat-button-base.mat-primary
+      {
+      background: #deb887;
+      color: #fff;
+      }
+
+      h1{
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+      // table {
+      //   margin-top: 3%;
+      //   tbody tr{
+      //     text-align: center;
+      //   }
+
+      //   thead {
+      //     position: sticky;
+      //     top: 0;
+      //     z-index: 1;
+      //   }
+
+
+      //   tbody tr:last-child
+      //   {
+      // border-bottom: 1.5px solid $base-color;
+      //   }
+
+      //   tbody tr:nth-of-type(even)
+      //   {
+      // background-color: #2a2a9f21
+      //   }
+
+      //   tbody tr:nth-of-type(odd)
+      //   {
+      // background-color: #fff
+      //   }
+
+
+      //   thead td {
+
+      //     text-align: center;
+      //     padding: 15px 5px 15px 5px;
+      //     }
+
+      //     thead td:last-child
+      //     {
+      //       border-top-right-radius: 3px;
+      //     }
+
+      //     thead td:first-child
+      //     {
+      //       border-top-left-radius: 3px;
+      //     }
+
+      //   thead tr {
+      //     background: $base-color;
+      //     color: #fff;
+      //     font-weight: 500 !important;
+      //     text-align: center;
+      //   }
+
+      // }
+
+
+      // .tablecommon {
+      //   margin-top: 3%;
+      //   tbody tr{
+
+      //     text-align: center;
+
+      //   }
+
+      //   thead {
+      //     position: sticky;
+      //     top: 0;
+      //     z-index: 1;
+      //   }
+
+
+      //   tbody tr:last-child
+      //   {
+      // border-bottom: 1.5px solid $base-color;
+      //   }
+
+      //   tbody tr:nth-of-type(even)
+      //   {
+      // background-color: #2a2a9f21
+      //   }
+
+      //   tbody tr:nth-of-type(odd)
+      //   {
+      // background-color: #fff
+      //   }
+
+
+      //   thead td {
+
+      //     text-align: center;
+      //     padding: 15px 5px 15px 5px;
+      //     }
+
+      //     thead td:last-child
+      //     {
+      //       border-top-right-radius: 3px;
+      //     }
+
+      //     thead td:first-child
+      //     {
+      //       border-top-left-radius: 3px;
+      //     }
+
+      //   thead tr {
+      //     background: $base-color;
+      //     color: #fff;
+      //     font-weight: 500 !important;
+      //     text-align: center;
+      //   }
+
+      // }
+
+      ul.ngx-pagination.responsive .current {
+        background: $base-color !important;
+
+        border-radius: 2.5px;
+        color: #ffffff;
+        font-weight: 800;
+      }
+
+      ul.ngx-pagination.responsive a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      ul.ngx-pagination.responsive :hover{
+        transition: 0.3s;
+        color: $base-color;
+        background-color: #ffffff;
+      }
+
+      ul.ngx-pagination.responsive a :hover{
+        transition: 0.3s;
+        color: $base-color;
+        background-color: #ffffff;
+      }
+
+      ul.ngx-pagination{
+        position: relative;
+        bottom: 0;
+      }
+
+
+.invalid{
+  color: red;
+}
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: $base-color;
+}
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: rgb(0 0 0);
+}
+
+
+.mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
+  background-color: #2ca02c;
+}
+
+
+.swal2-container.swal2-center>.swal2-popup {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: center;
+  width: 30%;
+}
+
+.round
+{
+border-radius: 20px;
+}
+
+
+// button.mat-focus-indicator.mat-stroked-button.mat-button-base.mat-primary {
+//   background: #fff;
+//   color: #2a2a9f;
+// }
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: #2a2a9f;
+}
+
+.Tmplate{
+  text-align: center;
+  margin-top: 5px;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 10px
+}
+
+.mat-tooltip
+{
+  color: #ffffff !important;
+  font-weight: 500;
+  background-color: #2a2a9fd9;
+}

@@ -1,0 +1,64 @@
+<h1>DG Energy Slot wise consumption</h1>
+
+<ng-template #elseBlock>
+
+  <h2>Select State to View Data</h2>
+
+</ng-template>
+
+<app-summary-filters (SendState)="SetState($event)" (SendFilters)="Setfilters($event)"></app-summary-filters>
+
+<table class="table table-bordered" *ngIf="SummaryData.length!=0; else elseBlock">
+  <thead>
+  <tr>
+    <th>HTSC no</th>
+    <th>Permitted/ Sanctioned demand(KVA)</th>
+    <th>Unit name</th>
+    <th>C1<br>{{Timings?.c1timing}}</th>
+    <th>C2<br>{{Timings?.c2timing}}</th>
+    <th>C3<br>{{Timings?.c3timing}}</th>
+    <th>C4<br>{{Timings?.c4timing}}</th>
+    <th>C5<br>{{Timings?.c5timing}}</th>
+    <th>C</th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th>kVA</th>
+    <th></th>
+    <th>kWh</th>
+    <th>kWh</th>
+    <th>kWh</th>
+    <th>kWh</th>
+    <th>kWh</th>
+    <th>kWh</th>
+  </tr>
+</thead>
+<tbody>
+  <tr  *ngFor="let loop of SummaryData">
+    <td>{{loop?.HtscCode}}</td>
+    <td>{{loop?.powerlimit}}</td>
+    <td>{{loop?.Plant}}</td>
+    <td>{{loop?.C1_value_ECC || '-'}}</td>
+    <td>{{loop?.C2_value_ECC || '-'}}</td>
+    <td>{{loop?.C3_value_ECC || '-'}}</td>
+    <td>{{loop?.C4_value_ECC || '-'}}</td>
+    <td>{{loop?.C5_value_ECC || '-'}}</td>
+    <td>{{loop?.C_value_ECC || '-'}}</td>
+  </tr>
+  <tr class="total">
+    <td colspan="3">TOTAL</td>
+    <td>{{Totals.C1_value_ECC}}</td>
+    <td>{{Totals.C2_value_ECC}}</td>
+    <td>{{Totals.C3_value_ECC}}</td>
+    <td>{{Totals.C4_value_ECC}}</td>
+    <td>{{Totals.C5_value_ECC}}</td>
+    <td>{{Totals.C_value_ECC}}</td>
+  </tr>
+</tbody>
+
+</table>
+
+<span *ngIf="SummaryData.length!=0">
+  <app-summary-excel-download [ExcelData]="LetExcel"></app-summary-excel-download>
+  </span>

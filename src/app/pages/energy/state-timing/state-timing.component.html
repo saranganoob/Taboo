@@ -1,0 +1,175 @@
+<h1>State Timing </h1>
+
+
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+    </div>
+    <div class="col-sm">
+      <mat-form-field class="custom-width">
+        <mat-label>State</mat-label>
+        <mat-select name="finyear" >
+          <mat-option *ngFor="let loop of statelist" [value]="loop" >
+            {{loop.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm">
+
+    </div>
+  </div>
+</div> -->
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Submit(form)">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col">
+
+        <mat-form-field class="custom-width">
+          <mat-label>State</mat-label>
+          <mat-select name="finyear"
+          name="state" [(ngModel)]="form.state" #state="ngModel" required>
+            <mat-option *ngFor="let loop of statelist" [value]="loop.Name" >
+              {{loop.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="f.submitted && state.errors" class="invalid">
+          <div *ngIf="state.errors['required']">State is required</div>
+        </div>
+
+      </div>
+
+      <div class="col">
+        <mat-form-field class="custom-width">
+          <mat-label>c1</mat-label>
+          <input matInput placeholder="i.e..Rs. 70.93" autocomplete="off"
+          name="c1"
+          [(ngModel)]="form.c1"
+          #c1="ngModel"
+          >
+        </mat-form-field>
+        <div *ngIf="f.submitted && c1.errors" class="invalid">
+          <div *ngIf="c1.errors['required']">c1 is required</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <mat-form-field class="custom-width">
+          <mat-label>c2</mat-label>
+          <input matInput placeholder="i.e..Rs. 70.93" autocomplete="off"
+          name="c2"
+          [(ngModel)]="form.c2"
+          #c2="ngModel"
+          >
+        </mat-form-field>
+        <div *ngIf="f.submitted && c2.errors" class="invalid">
+          <div *ngIf="c2.errors['required']">c2 is required</div>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+
+      <div class="col">
+        <mat-form-field class="custom-width">
+          <mat-label>c3</mat-label>
+          <input matInput placeholder="i.e..Rs. 70.93" autocomplete="off"
+          name="c3"
+          [(ngModel)]="form.c3"
+          #c3="ngModel"
+          >
+        </mat-form-field>
+        <div *ngIf="f.submitted && c3.errors" class="invalid">
+          <div *ngIf="c3.errors['required']">c3 is required</div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <mat-form-field class="custom-width">
+          <mat-label>c4</mat-label>
+          <input matInput placeholder="i.e..Rs. 70.93" autocomplete="off"
+          name="c4"
+          [(ngModel)]="form.c4"
+          #c4="ngModel"
+          >
+        </mat-form-field>
+        <div *ngIf="f.submitted && c4.errors" class="invalid">
+          <div *ngIf="c4.errors['required']">c4 is required</div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <mat-form-field class="custom-width">
+          <mat-label>c5</mat-label>
+          <input matInput placeholder="i.e..Rs. 70.93" autocomplete="off"
+          name="c5"
+          [(ngModel)]="form.c5"
+          #c5="ngModel"
+          >
+        </mat-form-field>
+        <div *ngIf="f.submitted && c5.errors" class="invalid">
+          <div *ngIf="c5.errors['required']">c5 is required</div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+  <div class="button" >
+    <button mat-raised-button color="primary" type="submit">{{isUpdate?'Update':'Add'}}</button>
+    <button mat-raised-button color="primary" type="reset">clear</button>
+  </div>
+
+  </form>
+
+
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <td>State</td>
+          <td>C1</td>
+          <td>C2</td>
+          <td>C3</td>
+          <td>C4</td>
+          <td>C5</td>
+          <td>Edit</td>
+      </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngIf="Timinglist?.length > 0; else emptyMsg">
+            <tr *ngFor="let rowdata of Timinglist ">
+          <td >{{rowdata.State }}</td>
+          <td >{{rowdata.c1timing || '-' }}</td>
+          <td >{{rowdata.c2timing || '-' }}</td>
+          <td >{{rowdata.c3timing || '-' }}</td>
+          <td >{{rowdata.c4timing || '-' }}</td>
+          <td >{{rowdata.c5timing || '-' }}</td>
+          <td >
+            <button mat-icon-button (click)="edit(rowdata)">
+              <mat-icon >edit</mat-icon>
+            </button>
+          </td>
+      </tr>
+    </ng-container>
+      <ng-template #emptyMsg>
+        <tr>
+          <td class="txt-center" colspan="18"><P>No Data Found.</P></td>
+        </tr>
+      </ng-template>
+  </tbody>
+</table>
+
+
+

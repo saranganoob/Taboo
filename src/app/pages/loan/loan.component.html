@@ -1,0 +1,47 @@
+<h1>Loan Data Upload</h1>
+
+<div class="form-group" >
+  <div class="mb-3">
+    <input class="form-control" #fileInput type="file" id="formFileMultiple" accept=".xlsx, .xls, .csv"  (change)="fileChangeZ($event) ">
+    <p style="text-align: center;color: red;">Please Upload only .xlsx file</p>
+  </div>
+
+  <div class="Tmplate">
+    <a mat-stroked-button color="primary" href="./assets/files/Loan_Template.xlsx" >Download Excel Template</a>
+  </div>
+
+  <div *ngIf="showSpinner" class="spinner-border" style="width: 3rem; height: 3rem; margin-left: 50%;" role="status">
+    <span class="sr-only"></span>
+  </div>
+
+  <div *ngIf="Sampleimg">
+  <h2>Sample Excel Format</h2>
+  <img src="./assets/Images/Loan.PNG" class="center" alt="Excel image">
+</div>
+
+
+  <h2 *ngIf="ShowError">Your Excel File has Mismatched Data..!<h2>
+    <h3 *ngIf="ShowError">Kindly Recheck and Upload<h3>
+
+
+
+  <table class="table table-striped" *ngIf="ShowErrorTable">
+    <thead>
+      <tr>
+        <th>Row</th>
+        <th>Column</th>
+        <th>Error Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of TabDetails">
+        <td>{{data.Row}}</td>
+        <td>{{data.Cell_No}}</td>
+        <td>{{data.ErrorVal}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="button" style="text-align: center;">
+    <button mat-raised-button color="primary" (click)="close()">Close</button>
+  </div>

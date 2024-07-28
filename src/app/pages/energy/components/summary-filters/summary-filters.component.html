@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm">
+
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select name="State" (selectionChange)="SetState($event)" required [(ngModel)]="SelState">
+            <mat-option *ngFor="let loop of statelist" [value]="loop.Name" >
+              {{loop.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+    </div>
+
+    <div class="col-sm">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Financial Year</mat-label>
+        <mat-select [(ngModel)]="FinYear" (selectionChange)="SetFY($event)" [disabled]="!SelState">
+          <mat-option *ngFor="let years of FYList" [value]="years.year" >{{years.year}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-sm">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Quartar</mat-label>
+        <mat-select [(ngModel)]="Quartar" (selectionChange)="SetQuartar($event)" [disabled]="!SelState">
+          <mat-option *ngFor="let Qua of QuartarList" [value]=Qua.quar>{{Qua.quar}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <div class="col-sm">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Month</mat-label>
+        <mat-select [(ngModel)]="Month" (selectionChange)="SetMonth($event)" [disabled]="!SelState">
+          <mat-option *ngFor="let monts of MonthList" [value]=monts.Id>{{monts.MonName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <div class="col-sm">
+      <button mat-raised-button color="primary" (click)="Reset()"> <mat-icon>refresh</mat-icon>&nbsp;&nbsp; Reset Filters</button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,97 @@
+<section class="sec-main">
+	<div class="container">
+		<div class="row">
+			<div class="title-sec">
+				<h3>Profile Settings</h3>
+			</div>
+		</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="forgot-inner">
+						<h4>Profile Details</h4>
+						<table class="table">
+							<tbody>
+								<tr>
+									<th scope="row">User Name</th>
+									<td>{{ LoginData?.employeename || '-'}}</td>
+								</tr>
+                <tr>
+									<th scope="row">User Type</th>
+									<td>{{ LoginData?.EmployeeType || '-'}}</td>
+								</tr>
+                <tr>
+									<th scope="row">User Division</th>
+									<td>{{ LoginData?.division || '-'}}</td>
+								</tr>
+								<tr>
+									<th scope="row">Employee No</th>
+									<td>{{ LoginData?.employeeNo || '-'}}</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="forgot-inner">
+						<h4>Change Password</h4>
+            <form [formGroup]="settingsForm" (ngSubmit)="ChangePassword()" novalidate>
+							<div class="single-form password-view">
+								<mat-form-field class="custom-width">
+									<mat-label>Current Password</mat-label>
+									<input matInput [type]="hide1 ? 'password' : 'text'"
+										placeholder="Enter Current Password" formControlName="currentPassword"
+										autocomplete="off" required [(ngModel)]="currentPassword">
+									<a href="#" (click)="hide1 = !hide1">
+										<mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+									</a>
+								</mat-form-field>
+                <div *ngIf="submitted && f.currentPassword.errors" class="error">
+									<div *ngIf="f.currentPassword.errors.required">Current Password is required</div>
+								</div>
+							</div>
+
+
+							<div class="single-form password-view">
+								<mat-form-field>
+									<mat-label>New Password</mat-label>
+									<input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter New Password"
+										formControlName="newpassword" autocomplete="off" required
+										[(ngModel)]="newpassword">
+									<a href="#" (click)="hide = !hide">
+										<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+									</a>
+								</mat-form-field>
+                <div *ngIf="submitted && f.newpassword.errors" class="error">
+									<div *ngIf="f.newpassword.errors.required">New Password is required</div>
+									<div *ngIf="f.newpassword.errors.minlength">Password must be at least 6 characters</div>
+
+								</div>
+							</div>
+
+							<div class="single-form password-view">
+								<mat-form-field>
+									<mat-label>Confirm Password</mat-label>
+									<input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirm Password"
+										formControlName="confirmPassword" autocomplete="off" required
+										[(ngModel)]="confirmPassword">
+
+								</mat-form-field>
+                <div *ngIf="submitted && f.confirmPassword.errors" class="error">
+									<div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+
+								</div>
+
+							</div>
+
+							<div class="btn-sec">
+								<button mat-raised-button color="primary" >Change</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+	</div>
+</section>

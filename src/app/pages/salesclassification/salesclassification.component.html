@@ -1,0 +1,138 @@
+<h1>Add / Edit Flash Sales Classification Data - {{DisplayLastMonthYear}}</h1>
+
+
+<h2>Division : {{LoginData.division}}&nbsp; &nbsp; Financial Year : {{Financial_Yea}}</h2>
+
+
+
+
+  <div class="container">
+    <h2 class="top-right">Rs In Crs</h2>
+    <!-- Rest of your content -->
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+
+  <div class="container">
+    <div class="row">
+      <ng-container *ngFor="let row of Salesclass; let j = index;">
+        <div class="col">
+          <!-- table starts here -->
+          <span [ngSwitch]="row.Unit">
+            <h4 *ngSwitchCase="1500">Fasteners</h4>
+            <h4 *ngSwitchCase="1600">PM</h4>
+            <h4 *ngSwitchCase="1700">Pumps</h4>
+            <h4 *ngSwitchDefault>{{row.Unit}}</h4>
+          </span>
+
+          <table class="table table-striped" >
+
+              <thead>
+                <tr>
+                    <td>Unit</td>
+                    <td>OE</td>
+                    <td>Retail</td>
+                    <td>Export</td>
+                    <td>Product Sales</td>
+                </tr>
+            </thead>
+              <tbody>
+
+
+                 <ng-container *ngIf="Sales?.length > 0; else emptyMsg">
+
+
+                      <tr *ngFor="let item of row.indata; let i = index;">
+
+                      <td [class]="item.Unit=='Total'?'total':''">   {{item.Unit}}</td>
+
+                      <td>
+                        <input type="text" [class]="item.Unit=='Total'?'tabtexttot':'tabtext'"
+                        pattern="[0-9]+(\.[0-9][0-9]?)?"
+                          step="0.01"
+                          onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                          name="OE"
+                          (input)="CalcluateSalesClass(i,j,$event)"
+                          [(ngModel)]="item.OE"
+                          [disabled]="item.Unit=='Total' || SalesClassisSubmitted"
+                          [hidden]="item.Unit=='PLI'"
+                        #Retail="ngModel"
+                          required>
+
+                      </td>
+                       <td>
+
+                        <input type="text" [class]="item.Unit=='Total'?'tabtexttot':'tabtext'"
+                        pattern="[0-9]+(\.[0-9][0-9]?)?"
+                        [hidden]="item.Unit=='PLI'"
+                        step="0.01"
+                        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                        name="Retail"
+                        (input)="CalcluateSalesClass(i,j,$event)"
+                        [(ngModel)]="item.Retail"
+                        [disabled]="item.Unit=='Total' || SalesClassisSubmitted"
+
+                        #Retail="ngModel"
+                        required>
+
+                      </td>
+                      <td>
+
+                        <input type="text" [class]="item.Unit=='Total'?'tabtexttot':'tabtext'"
+                        name="exportz"
+                        (input)="CalcluateSalesClass(i,j,$event)"
+
+                          [(ngModel)]="item.Export"
+                          [disabled]="item.Unit=='Total' || SalesClassisSubmitted"
+
+                          pattern="[0-9]+(\.[0-9][0-9]?)?"
+                          step="0.01"
+                          onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                          #exportz="ngModel"
+                          required>
+
+                      </td>
+                      <td>
+                          <input type="text" [class]="item.Unit=='Total'?'tabtexttot':'tabtext'"
+                          [hidden]="item.Unit=='PLI'"
+                          name="ProductSales"
+
+                            [(ngModel)]="item.ProductSales"
+                            [disabled]="item.Unit=='Total' || SalesClassisSubmitted"
+
+                            pattern="[0-9]+(\.[0-9][0-9]?)?"
+                            step="0.01"
+                            onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                            #ProductSales="ngModel"
+                            required>
+
+                        </td>
+                      </tr>
+
+                </ng-container>
+                  <ng-template #emptyMsg>
+                    <tr>
+                      <td class="txt-center" colspan="5"><P>No Data Found.</P></td>
+                    </tr>
+                  </ng-template>
+              </tbody>
+            </table>
+          <!-- table Ends here -->
+        </div>
+        <div *ngIf="(j + 1) % 2 === 0 || j === Salesclass.length - 1" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+
+
+
+  <div class="button" style="text-align: center;">
+    <button [disabled]="SalesClassisSubmitted" mat-raised-button color="primary" (click)="Submit(false)">Save</button>
+    <button [disabled]="SalesClassisSubmitted" style="margin-left: 10px;" mat-raised-button color="primary" (click)="Submit(true)">Submit</button>
+
+  </div>
+
+  <h3 [hidden]="!SalesClassisSubmitted">You have alredy Submitted your Data's for this Month.!</h3>

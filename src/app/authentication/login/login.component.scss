@@ -1,0 +1,178 @@
+// section{
+//   background: linear-gradient(225deg, #3f51b542 0%, #ffffff 90%);
+// }
+
+// .divider:after,
+// .divider:before {
+// content: "";
+// flex: 1;
+// height: 1px;
+// background: #eee;
+// }
+
+// .password-view a {
+//   position: absolute;
+//   right: 0;
+//   top: 0px;
+//   color: #8c8c8cba;
+// }
+
+
+// h2{
+//   text-align: center;
+//   font-size: 25px;
+//   color: #2f415e;;
+// }
+
+// h1{
+//   text-align: center;
+//   font-size: 36px;
+//   color: #3f3d56;
+//   font-weight: 500;
+
+// }
+
+// form{
+//   text-align: center;
+//   width: 100%;
+
+
+//   img{
+//     height: 70px;
+//     background: #232a7a;
+//     padding: 8px;
+//     border-radius: 5px;
+//   }
+// }
+
+// .inputz
+// {
+//   width: 83%;
+// }
+
+// .inputz:invalid{
+//   animation: shake 300ms;
+//   color: #232a7a;
+// }
+
+// @keyframes shake {
+//   25%{
+//     transform: translateX(4px);
+//   }
+// }
+
+
+// .error
+// {
+//   color: red;
+// }
+
+// .Py5overr{
+//   padding-top: 0rem!important;
+//   padding-bottom: 3rem!important;
+// }
+
+// .XL6overr{
+//   flex: 0 0 auto;
+//   width: 60%;
+// }
+
+// .XL1overr{
+//   flex: 0 0 auto;
+//   width: 40%;
+//   margin-left: 0;
+// }
+
+
+// .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+//   background-color: #2f415e;
+// }
+
+
+section.login-section
+{
+
+  background: linear-gradient(91deg, white 51%, #53697f 96%);
+
+  .login-main {
+
+    width: 72.5%;
+    height: 100vh;
+    display: block;
+    background-image: url(../../../assets/Images/wind2.jpg);
+
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    & .login-inner {
+
+      position: absolute;
+      left: 81%;
+      top: 0%;
+      // background: #50647f36;
+      padding: 25px 25px 30px;
+      width: 300px;
+      border-radius: 5px;
+      border-top: 7px solid #232a7a;
+      transform: translate(-40.5%, -50%);
+      // background-color: white;
+
+      /* From https://css.glass */
+background: rgba(255, 255, 255, 0.24);
+// box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+box-shadow: -20px 20px 20px 6px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4.4px);
+-webkit-backdrop-filter: blur(4.4px);
+
+
+      margin: 22% 0px;
+
+
+
+      & .title {
+        text-align: center;
+
+        & img {
+          width: 60px;
+          height: auto;
+          background: #232a7a;
+          padding: 3px;
+        }
+
+        h2 {
+          &:first-of-type {
+              color: #232a7a;
+              font-size: 17px
+          }
+
+          &:last-of-type {
+              color: #232a7a;
+
+          }
+        }
+
+      }
+      & .single-form {
+        padding-bottom: 7px;
+
+        mat-form-field{
+          width: 100%;
+        }
+
+        mat-icon{
+          color: grey;
+        }
+
+        & .error {
+          color: red;
+        }
+      }
+      & button {
+        margin: 5px auto;
+        display: block;
+        background: #232a7a;
+      }
+    }
+  }
+
+}

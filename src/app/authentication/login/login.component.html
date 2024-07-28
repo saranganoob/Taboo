@@ -1,0 +1,124 @@
+<!-- <section class="vh-100">
+
+  <div class="container py-5 h-100 Py5overr">
+
+    <div class="row d-flex align-items-center justify-content-center h-100">
+
+      <div class="col-md-8 col-lg-7 col-xl-6  XL6overr">
+        <img src="assets/Images/dashboardbg.png" class="img-fluid" alt="Phone image">
+      </div>
+
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 XL1overr">
+
+
+        <form [formGroup]="loginForm" (ngSubmit)="Login()" novalidate>
+
+
+            <img src="assets/Images/TVSlogo.png">
+            <h2 style=" margin-bottom: 20px;font-size: 20px;">Sundram Fasteners Limited</h2>
+            <h2 style="margin: 0 0 5px;">Dashboard Data <br>Login</h2>
+
+              <div class="form-outline mb-4">
+                <mat-form-field class="custom-width inputz" appearance="fill">
+                  <mat-label>Employee SAP Number</mat-label>
+                  <input matInput placeholder="SAP Number" formControlName="username" autocomplete="off"
+                  maxlength="8" required>
+
+                </mat-form-field>
+                <div *ngIf="submitted && f.username.errors" class="error">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                  <div *ngIf="f.username.errors.pattern">Enter a valid Employee Number</div>
+              </div>
+              </div>
+
+              <div class="form-outline mb-4 password-view ">
+                <mat-form-field class="inputz" appearance="fill">
+                  <mat-label>Password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="XXXXXXXXX" formControlName="password" autocomplete="off"
+                  minlength="6" maxlength="20" required>
+                  <a href="javascript:viod(0)" (click)="hide = !hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </a>
+                </mat-form-field>
+                <div *ngIf="submitted && f.password.errors" class="error">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+
+                  <div *ngIf="f.password.errors.minlength">Password must be atleast 6 characters</div>
+              </div>
+              </div>
+
+          <button mat-raised-button color="primary" type="submit">Login</button>
+          <div class="error" *ngIf="ResStauts">Invalid Credentials.! Try Again</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="login-section">
+
+  <div class="login-main">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-8">
+
+        </div>
+        <div class="col-4">
+
+
+
+
+            <div class="login-inner">
+
+
+
+        <div class="title">
+          <img src="assets/Images/TVSlogo.png" alt="TVS">
+
+          <h2>Sundram Fasteners Limited</h2>
+          <h2>Dashboard Data</h2>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="Login()" novalidate>
+          <div class="single-form">
+            <mat-form-field >
+              <mat-label>Employee SAP Number</mat-label>
+              <input matInput placeholder="SAP Number" formControlName="username" autocomplete="off"
+              maxlength="8" required>
+              <mat-error *ngIf="submitted && f.username.errors && f.username.errors.required">Username is required</mat-error>
+              <mat-error *ngIf="submitted && f.username.errors && f.username.errors.pattern">Enter a valid Employee Number</mat-error>
+            </mat-form-field>
+
+          </div>
+          <div class="single-form password-view">
+            <mat-form-field >
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="XXXXXXXXX" formControlName="password" autocomplete="off"
+              minlength="6" maxlength="20" required>
+
+                <mat-icon (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="submitted && f.password.errors && f.password.errors.required">Password is required</mat-error>
+                <mat-error *ngIf="submitted && f.password.errors && f.password.errors.minlength">Password must be atleast 6 characters</mat-error>
+            </mat-form-field>
+          </div>
+
+
+
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        </form>
+
+      </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</section>

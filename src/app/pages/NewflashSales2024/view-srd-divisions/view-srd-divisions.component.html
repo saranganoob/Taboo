@@ -1,0 +1,145 @@
+<h1>  Sales Revenue Data - {{DisplayLastMonthYear}}</h1>
+
+
+
+<div class="d-flex align-items-center justify-content-center" >
+  <div class="mx-auto my-auto">
+
+    <mat-form-field class="custom-width">
+      <mat-label>Financial Year</mat-label>
+      <mat-select name="finyear" [(ngModel)]="finy"  (selectionChange)="Selectfiny($event.value)">
+        <mat-option *ngFor="let loop of financialYears" [value]="loop" >
+          {{loop}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="custom-width" style="margin-left: 20px;" >
+      <mat-label>Month</mat-label>
+      <mat-select name="month"  [(ngModel)]="Selmon" (selectionChange)="Selectmon($event.value)" [disabled]="!finy">
+        <mat-option *ngFor="let month of MonList" [value]="month.id" [disabled]="month.isDisable">
+          {{ month.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="custom-width" style="margin-left: 20px;">
+      <mat-label> Division</mat-label>
+      <mat-select name="Div" [(ngModel)]="Seldiv" (selectionChange)="Selectdiv($event.value)">
+        <mat-option *ngFor="let loop of divlist" [value]="loop.Id" >
+          {{loop.DivisionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <mat-form-field class="custom-width" style="margin-left: 20px;">
+      <mat-label> Units</mat-label>
+      <mat-select  [(ngModel)]="Selunit" (selectionChange)="SelectUnit($event.value)" [disabled]="!finy">
+        <mat-option *ngFor="let loop of Unitlist"  [value]="loop.Unit" >
+          {{loop.UnitName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+
+    <button mat-icon-button (click)="clearfilter()" *ngIf="Showfilbutton">
+      <mat-icon>settings_backup_restore</mat-icon>
+    </button>
+
+
+</div>
+</div>
+
+<h2 style="float: right;">Rs in Crs</h2>
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <td>Division</td>
+          <td>Unit</td>
+          <td>OE</td>
+          <td>Retail</td>
+          <td>Export</td>
+          <td>Product Sales</td>
+          <td>Db Notes</td>
+          <td>Cr Notes</td>
+          <td>Net Product Sales</td>
+          <td>Scrap Sales</td>
+          <td>Total Sales</td>
+          <td>FTM Adj </td>
+          <td>Adj Sales<br> Post FTM</td>
+          <td>YTM Adj </td>
+          <td>Adj Sales<br> Post YTM</td>
+          <td>IPT Sales</td>
+          <td>Budgeted Sales</td>
+          <td>Month</td>
+          <td>Financial Year</td>
+          <td>Created By & Date</td>
+          <td>Modified By & Date</td>
+      </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngIf="TabDatas?.length > 0; else emptyMsg">
+            <tr *ngFor="let rowdata of TabDatas | paginate : {id: 'PageSecond', itemsPerPage: itemsperpage, currentPage: currentPage,totalItems: totalItems }; let i = index;">
+          <td >{{rowdata.Division }}</td>
+          <td> {{rowdata.Unit}}</td>
+          <td> {{rowdata.OE | number: '1.2-2'}}</td>
+           <td>{{ rowdata.Retail| number: '1.2-2'}}</td>
+          <td> {{rowdata.Export| number: '1.2-2'}}</td>
+          <td> {{rowdata.ProductSales| number: '1.2-2'}}</td>
+          <td> {{rowdata.DbNotes| number: '1.2-2'}}</td>
+          <td> {{rowdata.CrNotes| number: '1.2-2'}}</td>
+          <td> {{rowdata.NetProductSales| number: '1.2-2'}}</td>
+          <td> {{rowdata.ScrapSales| number: '1.2-2'}}</td>
+          <td> {{rowdata.TotalSales| number: '1.2-2'}}</td>
+
+          <!-- <td> {{rowdata.CumAdj| number: '1.2-2'}}</td> -->
+          <!-- <td>
+            <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+              <button type="button" class="btn btn-primary" matTooltip="FTM" matTooltipPosition="left" matTooltipShowDelay=100 matTooltipHideDelay=500 (click)="ftmpopup()" >F</button>
+              <button type="button" class="btn btn-primary" matTooltip="YTM" matTooltipPosition="right" matTooltipShowDelay=100 matTooltipHideDelay=500 (click)="ytmpopup()">Y</button>
+            </div>
+        </td> -->
+        <td> FTM</td>
+        <td> ADJ</td>
+        <td> YTM</td>
+
+          <td> {{rowdata.AdjSales| number: '1.2-2'}}</td>
+          <td> {{rowdata.IPTSales| number: '1.2-2'}}</td>
+          <td> {{rowdata.BudgetedSales| number: '1.2-2'}}</td>
+          <td> {{rowdata.Month | date:'M/d/yyyy' }}</td>
+          <td> {{rowdata.FinancialYear}}</td>
+          <td> {{rowdata.createdby}} <br>{{rowdata.createddatetime  | date:'yyyy-MM-dd' }}</td>
+          <td> {{rowdata.modifiedby}} <br>{{rowdata.modifieddate  | date:'yyyy-MM-dd' }}</td>
+
+
+      </tr>
+    </ng-container>
+      <ng-template #emptyMsg>
+        <tr>
+          <td class="txt-center" colspan="18"><P>No Data Found.</P></td>
+        </tr>
+      </ng-template>
+  </tbody>
+</table>
+
+<div class="button" style="text-align: center;">
+  <button mat-raised-button (click)="exportExcel()" color="primary" >Download</button>
+
+</div>
+
+<div class="pagination">
+  <pagination-controls (pageChange)="NGXPageChange($event)" (pageBoundsCorrection)="NGXPageChange($event)"
+    id="PageSecond"
+    [responsive]="true"
+    [maxSize]="8"
+    [directionLinks]="true"
+    [autoHide]="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+
+    ></pagination-controls>
+  </div>

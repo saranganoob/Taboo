@@ -1,0 +1,176 @@
+h1{
+  font-family: 'Arial';
+    font-size: 24px;
+    line-height: 27px;
+    color: #000000;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+}
+
+img{
+  width: 200px;
+  background-color: #2b32782b;
+}
+
+table{
+  width: 100%;
+  border:1px solid #000;
+  border-collapse: collapse;
+
+  tr{
+    th{
+      text-align: center;
+      border:1px solid #000;
+      background-color: #f0f0f0;
+      border-collapse: collapse;
+      padding: 0.5rem 0.5rem;
+    }
+
+  }
+
+  tbody{
+    border:1px solid #000;
+    border-collapse: collapse;
+    tr{
+
+      td{
+        text-align: center;
+        border:1px solid #000;
+        border-collapse: collapse;
+        padding: 0.5rem 0.5rem;
+
+      }
+    }
+  }
+
+  tbody tr:last-child
+        {
+      border-bottom: 0px solid #000;
+        }
+
+      //   tbody tr:nth-of-type(even)
+      //   {
+      // background-color: #f0f0f0
+      //   }
+
+      //   tbody tr:nth-of-type(odd)
+      //   {
+      // background-color: #fff
+      //   }
+
+      tbody tr:nth-child(1)
+      {
+
+        background-color: #fff
+      }
+
+      tbody tr:nth-child(2)
+      {
+
+        background-color: #fff
+      }
+      tbody tr:nth-child(3)
+      {
+
+        background-color: #fff
+      }
+
+      tbody tr:nth-child(4)
+      {
+        font-weight: 600;
+        background-color: #f0f0f0
+      }
+      tbody tr:nth-child(5)
+      {
+
+        background-color: #fff
+      }
+
+      tbody tr:nth-child(6)
+      {
+
+        background-color: #fff
+      }
+      tbody tr:nth-child(7)
+      {
+        background-color: #fff
+      }
+      tbody tr:nth-child(8)
+      {
+        font-weight: 600;
+        background-color: #f0f0f0
+
+      }
+      tbody tr:nth-child(9)
+      {
+        font-weight: 600;
+        background-color: #f0f0f0
+      }
+      tbody tr:nth-child(10)
+      {
+        background-color: #fff
+      }
+      tbody tr:nth-child(11)
+      {
+        background-color: #fff
+      }
+      tbody tr:nth-child(12)
+      {
+        background-color: #fff
+      }
+
+ }
+
+
+ h4{
+  text-align: center;
+  font-weight: 500;
+}
+
+
+.total{
+  font-weight: 600;
+}
+
+.tabtext{
+  width: 70%;
+}
+
+.tabtexttot{
+  width: 70%;
+  font-weight: 600;
+}
+
+.container {
+  position: relative;
+  .row{
+    width: 103%;
+    .col
+    {
+
+      table
+      {
+        border:1px solid #000;
+        border-collapse: collapse;
+        thead
+        {
+          tr
+          {
+           background-color: #f0f0f0;
+           color: #000;
+           border:1px solid #000;
+          }
+        }
+      }
+    }
+
+  }
+  /* Add any other styles for the container */
+}
+
+ng-container{
+
+ background-color: aqua;
+
+}

@@ -1,0 +1,286 @@
+<h1>Plant Sales Revenue Data - {{DisplayLastMonthYear}}</h1>
+
+<h2>For the Financial Year  {{Financial_Yea}}</h2>
+
+<div class="d-flex align-items-center justify-content-center" >
+  <div class="mx-auto my-auto">
+
+    <mat-form-field class="custom-width">
+      <mat-label>Select Division</mat-label>
+      <mat-select name="Div" [(ngModel)]="division"  (selectionChange)="Selectdiv($event.value)">
+        <mat-option *ngFor="let loop of divlist" [value]="loop" >
+          {{loop.DivisionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button style="margin-left: 10px; color: #2a2a9f;" [hidden]="ViewAllDiv" (click)="Alldiv()" mat-stroked-button>All Divisions</button>
+
+    <p class="seldiv" [hidden]="ViewAllDiv">Selected Division : {{division}}</p>
+  </div>
+</div>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr style="background: #2a2a9f40;color: #2a2a9f;font-weight: 500 !important;text-align: center; position: sticky;top: 0;z-index: 1;">
+        <td></td>
+        <td></td>
+        <td>A</td>
+        <td>B</td>
+        <td>C</td>
+        <td>D=A+B+C</td>
+        <td>E</td>
+        <td>F</td>
+        <td>G=D+E-F</td>
+        <td>H</td>
+        <td>I=G+H</td>
+        <td>J</td>
+        <td>K=I+J</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+</thead>
+  <thead>
+      <tr>
+
+          <td>Division</td>
+          <td>Unit</td>
+          <td>OE</td>
+          <td>Retail</td>
+          <td>Export</td>
+          <td>Product Sales</td>
+          <td>Db Notes</td>
+          <td>Cr Notes</td>
+          <td>Net Product Sales</td>
+          <td>Scrap Sales</td>
+          <td>Total Sales</td>
+          <td>Cum Adj</td>
+          <td>Adj Sales</td>
+          <td>IPT sales </td>
+          <td>Budgeted Sales</td>
+           <td>Month</td>
+          <td>Created By & date</td>
+
+
+      </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngIf="TabDatas?.length > 0; else emptyMsg">
+            <tr *ngFor="let rowdata of TabDatas | paginate : {id: 'PageSecond', itemsPerPage: itemsperpage, currentPage: currentPage,totalItems: totalItems }; let i = index;">
+
+          <td>{{rowdata.Division }}</td>
+          <td> {{rowdata.Unit}}</td>
+          <td>
+
+            <input type="text" class="tabtext"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+                step="0.01"
+                onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+                name="OE"
+                (input)="CalcluateAll(i)"
+                [(ngModel)]="rowdata.OE"
+                [disabled]="rowdata.disable"
+              #Retail="ngModel"
+                required
+              >
+
+          </td>
+           <td>
+
+            <input type="text" class="tabtext"
+            pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              name="OE"
+              (input)="CalcluateAll(i)"
+              [(ngModel)]="rowdata.Retail"
+              [disabled]="rowdata.disable"
+            #Retail="ngModel"
+              required
+            >
+          </td>
+          <td>
+            <input type="text" class="tabtext"
+            pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              name="OE"
+              (input)="CalcluateAll(i)"
+              [(ngModel)]="rowdata.Export"
+              [disabled]="rowdata.disable"
+            #Retail="ngModel"
+              required>
+
+          </td>
+          <td> {{rowdata.ProductSales| number: '1.2-2'}}</td>
+          <td>
+            <input type="text" class="tabtext" name="Cr_Notes"
+            (input)="CalcluateAll(i)"
+            [(ngModel)]="rowdata.DbNotes"
+            [disabled]="rowdata.disable"
+            pattern="[0-9]+(\.[0-9][0-9]?)?"
+            step="0.01"
+            onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+            #Cr_Notes="ngModel"
+            required>
+          </td>
+          <td>
+             <input type="text" class="tabtext"
+             pattern="[0-9]+(\.[0-9][0-9]?)?"
+               step="0.01"
+               onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+               name="OE"
+               (input)="CalcluateAll(i)"
+               [(ngModel)]="rowdata.CrNotes"
+               [disabled]="rowdata.disable"
+             #Retail="ngModel"
+               required>
+
+            </td>
+          <td> {{rowdata.NetProductSales| number: '1.2-2'}}</td>
+          <td>
+             <input type="text" class="tabtext"
+             pattern="[0-9]+(\.[0-9][0-9]?)?"
+               step="0.01"
+               onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+               name="OE"
+               (input)="CalcluateAll(i)"
+               [(ngModel)]="rowdata.ScrapSales"
+               [disabled]="rowdata.disable"
+             #Retail="ngModel"
+               required>
+
+            </td>
+          <td> {{rowdata.TotalSales| number: '1.2-2'}}</td>
+          <td>
+             <input type="text" class="tabtext"
+             pattern="[0-9]+(\.[0-9][0-9]?)?"
+               step="0.01"
+               onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+               name="OE"
+               (input)="CalcluateAll(i)"
+               [(ngModel)]="rowdata.CumAdj"
+               [disabled]="rowdata.disable"
+             #Retail="ngModel"
+               required>
+
+            </td>
+          <td> {{rowdata.AdjSales| number: '1.2-2'}}</td>
+
+          <td>
+
+            <input type="text" class="tabtext"
+            pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              name="OE"
+              (input)="CalcluateAll(i)"
+              [(ngModel)]="rowdata.IPTSales"
+              [disabled]="rowdata.disable"
+            #Retail="ngModel"
+              required>
+          </td>
+          <td>
+
+             <!-- <input type="text" class="tabtext"
+             pattern="[0-9]+(\.[0-9][0-9]?)?"
+               step="0.01"
+               onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+               name="OE"
+               (input)="CalcluateAll(i)"
+               [(ngModel)]="rowdata.BudgetedSales"
+               [disabled]="rowdata.disable"
+             #Retail="ngModel"
+               required> -->
+               {{rowdata.BudgetedSales}}
+            </td>
+
+          <td> {{rowdata.Month | date:'M/d/yyyy' }}</td>
+
+          <td> {{rowdata.createdby}} {{rowdata.createddatetime  | date: 'dd/MM/yyyy'}}</td>
+
+
+      </tr>
+
+      <tr style="font-weight: 600;background-color: #a3a0d900;">
+
+        <td colspan="2">TOTAL :</td>
+
+        <td>{{Tot.OE | number: '1.2-2'}}</td>
+        <td>{{Tot.Retail| number: '1.2-2'}}</td>
+        <td>{{Tot.Export| number: '1.2-2'}}</td>
+        <td>{{Tot.ProductSales| number: '1.2-2'}}</td>
+        <td>{{Tot?.DbNotes| number: '1.2-2'}}</td>
+        <td>{{Tot.CrNotes| number: '1.2-2'}}</td>
+        <td>{{Tot.NetProductSales| number: '1.2-2'}}</td>
+        <td>{{Tot.ScrapSales| number: '1.2-2'}}</td>
+        <td>{{Tot.TotalSales| number: '1.2-2'}}</td>
+        <td>{{Tot.CumAdj| number: '1.2-2'}}</td>
+        <td>{{Tot.AdjSales| number: '1.2-2'}}</td>
+        <td>{{Tot.IPTSales| number: '1.2-2'}}</td>
+        <td>{{Tot.BudgetedSales| number: '1.2-2'}}</td>
+        <td>-</td>
+        <td>-</td>
+
+
+
+    </tr>
+
+
+    </ng-container>
+      <ng-template #emptyMsg>
+        <tr>
+          <td class="txt-center" colspan="19"><P>No Data Found.</P></td>
+        </tr>
+      </ng-template>
+  </tbody>
+</table>
+
+
+
+<div class="button" style="text-align: center;" >
+  <button  mat-raised-button color="primary" (click)="Save()">Save</button>
+  <button  [hidden]="!ViewAllDiv" [disabled]="Unitcount!=totalItems" style="margin-left: 10px;" mat-raised-button color="primary" (click)="ExportSAlesAPI()">Submit</button>
+  <button  [hidden]="!ViewAllDiv" [disabled]="Unitcount!=totalItems" style="margin-left: 10px;" mat-raised-button color="primary" (click)="exportExcel()">Download As Excel</button>
+</div>
+
+<!-- {{TabDatas | json}} -->
+
+<!-- <div class="d-flex align-items-center justify-content-center" >
+  <div class="mx-auto my-auto">
+
+
+<mat-form-field >
+  <mat-label>Remarks</mat-label>
+  <input matInput placeholder="Comments" autocomplete="off"
+  name="Rem">
+</mat-form-field>
+
+</div>
+</div> -->
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Remarks</mat-label>
+  <textarea matInput placeholder="Leave a comment..."></textarea>
+</mat-form-field>
+
+<div class="pagination">
+  <pagination-controls (pageChange)="NGXPageChange($event)" (pageBoundsCorrection)="NGXPageChange($event)"
+    id="PageSecond"
+    [responsive]="true"
+    [maxSize]="8"
+    [directionLinks]="true"
+    [autoHide]="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+
+    ></pagination-controls>
+  </div>
+
+
+

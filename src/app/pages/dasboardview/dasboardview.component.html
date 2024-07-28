@@ -1,0 +1,245 @@
+<div id="mytab">
+
+<img src="./assets/Images/logo1.png">
+<!-- <h1>Sundram Fasterners Ltd</h1> -->
+<br>
+<br>
+<h1>Flash Sales Report &nbsp; &nbsp; Financial Year : {{Financial_Yea}} &nbsp; &nbsp;   {{DisplayLastMonthYear}}</h1>
+
+<br>
+
+
+  <h2 style="float: right;">Rs In Crs</h2>
+
+  <br>
+
+
+
+
+  <table #tableRef >
+    <tr>
+        <th rowspan=3></th>
+        <th [attr.colspan]=units.length>Division Name :{{LoginData.division}}</th>
+        <th rowspan=3>Grand Total</th>
+    </tr>
+
+
+    <tr>
+    <th *ngFor="let liop of units">
+      {{liop.name}}
+    </th>
+  </tr>
+
+    <tbody *ngIf="LoginData.division=='MFD'">
+      <tr *ngFor="let loop of Dsvi">
+        <td>{{loop.titles}}</td>
+        <td>{{loop.forge | number: '1.2-2'}}</td>
+        <td>{{loop.ipu | number: '1.2-2'}}</td>
+        <td>{{loop.kpm | number: '1.2-2'}}</td>
+        <td>{{loop.pmm | number: '1.2-2'}}</td>
+        <td>{{loop.tappet | number: '1.2-2'}}</td>
+        <td>{{loop.tot | number: '1.2-2'}}</td>
+      </tr>
+    </tbody>
+
+
+    <tbody *ngIf="LoginData.division=='FD'">
+    <tr *ngFor="let loop of Dsvi" >
+      <td>{{loop.titles}}</td>
+      <td>{{loop.Hex | number: '1.2-2'}}</td>
+      <td>{{loop.HNF | number: '1.2-2'}}</td>
+      <td>{{loop.Hex+loop.HNF  | number: '1.2-2'}}</td>
+      <td>{{loop.Krishnapuram | number: '1.2-2'}}</td>
+      <td>{{loop.Pondy | number: '1.2-2'}}</td>
+      <td>{{loop.WEF | number: '1.2-2'}}</td>
+      <td>{{loop.tot | number: '1.2-2'}}</td>
+    </tr>
+    </tbody>
+
+
+    <tbody *ngIf="LoginData.division=='Autolec'">
+    <tr *ngFor="let loop of Dsvi" >
+      <td>{{loop.titles}}</td>
+      <td>{{loop.Bearing | number: '1.2-2'}}</td>
+      <td>{{loop.Cummins | number: '1.2-2'}}</td>
+      <td>{{loop.Depot | number: '1.2-2'}}</td>
+      <td>{{loop.PlantII | number: '1.2-2'}}</td>
+      <td>{{loop.PlantIV | number: '1.2-2'}}</td>
+      <td>{{loop.tot | number: '1.2-2'}}</td>
+    </tr>
+    </tbody>
+
+    <tbody *ngIf="LoginData.division=='PTC'">
+      <tr *ngFor="let loop of Dsvi">
+        <td>{{loop.titles}}</td>
+        <td>{{loop.t2500 | number: '1.2-2'}}</td>
+        <td>{{loop.t2600 | number: '1.2-2'}}</td>
+        <td>{{loop.t2700 | number: '1.2-2'}}</td>
+        <td>{{loop.t3700 | number: '1.2-2'}}</td>
+        <td>{{loop.tot | number: '1.2-2'}}</td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="LoginData.division=='UKD'">
+      <tr *ngFor="let loop of Dsvi">
+        <td>{{loop.titles}}</td>
+        <td>{{loop.Fasteners | number: '1.2-2'}}</td>
+        <td>{{loop.PM | number: '1.2-2'}}</td>
+        <td>{{loop.Pumps | number: '1.2-2'}}</td>
+        <td>{{loop.tot | number: '1.2-2'}}</td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="LoginData.division=='RCA'">
+      <tr *ngFor="let loop of Dsvi">
+        <td>{{loop.titles}}</td>
+        <td>{{loop.RCA | number: '1.2-2'}}</td>
+        <td>{{loop.RCA | number: '1.2-2'}}</td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="LoginData.division=='ASD'">
+      <tr *ngFor="let loop of Dsvi">
+        <td>{{loop.titles}}</td>
+        <td>{{loop.ASD | number: '1.2-2'}}</td>
+        <td>{{loop.ASD | number: '1.2-2'}}</td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="LoginData.division=='HWF'">
+      <tr *ngFor="let loop of Dsvi">
+        <td>{{loop.titles}}</td>
+        <td>{{loop.HWF | number: '1.2-2'}}</td>
+        <td>{{loop.HWF | number: '1.2-2'}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+
+
+  <!-- <table>
+
+    <tr><th>Comments</th></tr>
+    <tbody>
+      <tr>
+        <td>
+          {{Cmnt}}
+        </td>
+      </tr>
+    </tbody>
+
+  </table> -->
+
+
+  <br>
+<br>
+
+  <h1>Sales Classification Report &nbsp; &nbsp; Financial Year : {{Financial_Yea}} &nbsp; &nbsp;   {{DisplayLastMonthYear}}</h1>
+
+<br>
+
+
+  <h2 style="float: right;">Rs In Crs</h2>
+
+  <br>
+
+
+  <div class="container">
+    <div class="row">
+      <ng-container *ngFor="let row of Salesclass; let j = index;">
+        <div class="col">
+          <br>
+          <br>
+          <!-- table starts here -->
+          <span [ngSwitch]="row.Unit">
+            <h4 *ngSwitchCase="1500">Fasteners</h4>
+            <h4 *ngSwitchCase="1600">PM</h4>
+            <h4 *ngSwitchCase="1700">Pumps</h4>
+            <h4 *ngSwitchDefault>{{row.Unit}}</h4>
+          </span>
+
+          <table>
+
+              <!-- <thead>
+                <tr>
+                    <td>Unit</td>
+                    <td>OE</td>
+                    <td>Retail</td>
+                    <td>Export</td>
+                    <td>Product Sales</td>
+                </tr>
+            </thead> -->
+
+            <tr>
+              <th>Unit</th>
+                    <th>OE</th>
+                    <th>Retail</th>
+                    <th>Export</th>
+                    <th>Product Sales</th>
+          </tr>
+
+
+              <tbody>
+
+
+                 <ng-container *ngIf="Sales?.length > 0; else emptyMsg">
+
+
+                      <tr *ngFor="let item of row.indata; let i = index;">
+
+                      <td [class]="item.Unit=='Total'?'total':''">
+
+                        {{item.Unit}}
+
+
+                      </td>
+
+                      <td [class]="item.Unit=='Total'?'total':''" >
+                        <span [hidden]="item.Unit=='PLI'">
+                        {{item.OE=='0'?'-':item.OE}}
+                      </span>
+                    </td>
+                      <td [class]="item.Unit=='Total'?'total':''" >
+                        <span [hidden]="item.Unit=='PLI'">
+                        {{item.Retail=='0'?'-':item.Retail}}
+                      </span>
+                    </td>
+                      <td [class]="item.Unit=='Total'?'total':''" >
+                        <span>
+                        {{item.Export=='0'?'-':item.Export}}
+                      </span>
+                    </td>
+                      <td [class]="item.Unit=='Total'?'total':''" >
+                        <span [hidden]="item.Unit=='PLI'">
+                        {{item.ProductSales=='0'?'-':item.ProductSales}}
+                      </span>
+                    </td>
+
+                      </tr>
+
+                </ng-container>
+                  <ng-template #emptyMsg>
+                    <tr>
+                      <td class="txt-center" colspan="5"><P>No Data Found.</P></td>
+                    </tr>
+                  </ng-template>
+              </tbody>
+            </table>
+          <!-- table Ends here -->
+        </div>
+        <div *ngIf="(j + 1) % 2 === 0 || j === Salesclass.length - 1" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+
+
+  <br>
+  <h4 style="text-align: center;">Comments:&nbsp; {{Cmnt}}</h4>
+
+
+</div>
+  <!-- <button mat-raised-button color="primary" (click)="makePdfnew()">Download PDF</button> -->
+  <!-- <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="makeExcel()">Download Excel</button> -->
+
+

@@ -1,0 +1,354 @@
+<h1>Add Flash Sales Data - {{DisplayLastMonthYear}}</h1>
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Submit()">
+
+     <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm">
+
+          <mat-form-field class="custom-width" appearance="fill">
+            <mat-label>Division</mat-label>
+            <input matInput placeholder="Borrowing" autocomplete="off"
+            name="Division"
+            [(ngModel)]="form.Division"
+            #Division="ngModel"
+            required
+            disabled>
+          </mat-form-field>
+          <div *ngIf="f.submitted && Division.errors" class="invalid">
+            <div *ngIf="Division.errors['required']">Division is required</div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <mat-form-field class="custom-width">
+            <mat-label>Unit</mat-label>
+            <mat-select name="Unit" [(ngModel)]="form.Unit" #Unit="ngModel" required>
+              <mat-option *ngFor="let loop of UnitList" [value]="loop.UnitName">
+                {{loop.UnitName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="f.submitted && Unit.errors" class="invalid">
+            <div *ngIf="Unit.errors['required']">Unit is required</div>
+          </div>
+        </div>
+
+           <div class="col-sm">
+            <mat-form-field class="custom-width" appearance="fill">
+              <mat-label>Financial Year</mat-label>
+              <input matInput placeholder="Financial Year" autocomplete="off"
+              name="Financial_Yea"
+              [(ngModel)]="form.Financial_Yea"
+              #Financial_Yea="ngModel"
+              disabled
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Financial_Yea.errors" class="invalid">
+              <div *ngIf="Financial_Yea.errors['required']">Financial Year is required</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>OE</mat-label>
+              <input matInput placeholder="OE" autocomplete="off"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              name="OE"
+              (input)="ProductsalVal()"
+              [(ngModel)]="form.OE"
+              #OE="ngModel"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && OE.errors" class="invalid">
+              <div *ngIf="OE.errors['required']">OE is required</div>
+              <div *ngIf="OE.errors['pattern']">OE Invalid format</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>Retail</mat-label>
+              <input matInput placeholder="Retail" autocomplete="off"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              name="Retail"
+              (input)="ProductsalVal()"
+              [(ngModel)]="form.Retail"
+              #Retail="ngModel"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Retail.errors" class="invalid">
+              <div *ngIf="Retail.errors['required']">Retail is required</div>
+              <div *ngIf="Retail.errors['pattern']">Retail Invalid format</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>Export</mat-label>
+              <input matInput placeholder="Export" autocomplete="off"
+              name="exportz"
+              (input)="ProductsalVal()"
+              [(ngModel)]="form.exportz"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #exportz="ngModel"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && exportz.errors" class="invalid">
+              <div *ngIf="exportz.errors['required']">Export is required</div>
+              <div *ngIf="exportz.errors['pattern']">Export Invalid format</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width" appearance="fill">
+              <mat-label>Product Sales (OE + Retail + Export)</mat-label>
+              <input matInput placeholder="Product Sales" autocomplete="off"
+              name="Product_Sales"
+              [(ngModel)]="form.Product_Sales"
+              #Product_Sales="ngModel"
+              disabled
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Product_Sales.errors" class="invalid">
+              <div *ngIf="Product_Sales.errors['required']">Product Sales is required</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+
+          </div>
+
+          <div class="col-sm">
+
+          </div>
+
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>Cr Notes</mat-label>
+              <input matInput placeholder="Cr Notes" autocomplete="off"
+              name="Cr_Notes"
+              (input)="NetProductsalVal()"
+              [(ngModel)]="form.Cr_Notes"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #Cr_Notes="ngModel"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Cr_Notes.errors" class="invalid">
+              <div *ngIf="Cr_Notes.errors['required']">Cr Notes is required</div>
+              <div *ngIf="Cr_Notes.errors['pattern']">Cr Notes Invalid format</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width" appearance="fill">
+              <mat-label>Net Product Sales (Product Sales - Cr Notes)</mat-label>
+              <input matInput placeholder="Net Product Sales" autocomplete="off"
+              name="Net_Product_Sales"
+              [(ngModel)]="form.Net_Product_Sales"
+              #Net_Product_Sales="ngModel"
+              disabled
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Net_Product_Sales.errors" class="invalid">
+              <div *ngIf="Net_Product_Sales.errors['required']">Net Product Sales is required</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>Scrap Sales</mat-label>
+              <input matInput placeholder="Scrap Sales" autocomplete="off"
+              name="scrapsales"
+              [(ngModel)]="form.Scrap_Sales"
+              #Scrap_Sales="ngModel"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              (input)="TotalSalesVal()"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Scrap_Sales.errors" class="invalid">
+              <div *ngIf="Scrap_Sales.errors['required']">Scrap Sales is required</div>
+              <div *ngIf="Scrap_Sales.errors['pattern']">Scrap Sales Invalid format</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width" appearance="fill">
+              <mat-label>Total Sales(Net Product Sales+Scrap Sales)</mat-label>
+              <input matInput placeholder="Total Sales" autocomplete="off"
+              name="Total_Sales"
+              [(ngModel)]="form.Total_Sales"
+              #Total_Sales="ngModel"
+              disabled
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Total_Sales.errors" class="invalid">
+              <div *ngIf="Total_Sales.errors['required']">Total Sales is required</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>Cum Adj</mat-label>
+              <input matInput placeholder="Cum Adj" autocomplete="off"
+              name="Cum_Adj"
+              [(ngModel)]="form.Cum_Adj"
+              #Cum_Adj="ngModel"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              (input)="AdjSalesVal()"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Cum_Adj.errors" class="invalid">
+              <div *ngIf="Cum_Adj.errors['required']">Cum Adj is required</div>
+              <div *ngIf="Cum_Adj.errors['pattern']">Cum Adj Invalid format</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width" appearance="fill">
+              <mat-label>Adj Sales (Total Sales + Cum Adj)</mat-label>
+              <input matInput placeholder="Adj Sales" autocomplete="off"
+              name="Adj_Sales"
+              [(ngModel)]="form.Adj_Sales"
+              #Adj_Sales="ngModel"
+              disabled
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Adj_Sales.errors" class="invalid">
+              <div *ngIf="Adj_Sales.errors['required']">Adj Sales is required</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>IPT Sales</mat-label>
+              <input matInput placeholder="IPT Sales" autocomplete="off"
+              name="IPT_Sales"
+              [(ngModel)]="form.IPT_Sales"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #IPT_Sales="ngModel"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && IPT_Sales.errors" class="invalid">
+              <div *ngIf="IPT_Sales.errors['required']">IPT Sales is required</div>
+              <div *ngIf="IPT_Sales.errors['pattern']">IPT Sales Invalid format</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="custom-width">
+              <mat-label>Budgeted Sales</mat-label>
+              <input matInput placeholder="Budgeted Sales" autocomplete="off"
+              name="Budgeted_Sales"
+              [(ngModel)]="form.Budgeted_Sales"
+              pattern="[0-9]+(\.[0-9][0-9]?)?"
+              step="0.01"
+              onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+              #Budgeted_Sales="ngModel"
+              required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Budgeted_Sales.errors" class="invalid">
+              <div *ngIf="Budgeted_Sales.errors['required']">Budgeted Sales is required</div>
+              <div *ngIf="Budgeted_Sales.errors['pattern']">Budgeted Sales Invalid</div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+
+            <!-- <mat-form-field class="custom-width" (click)="picker.open()">
+              <mat-label>Month</mat-label>
+              <input matInput [matDatepicker]="picker"
+              placeholder="Month"
+              name="Month"
+              [(ngModel)]="form.Month"
+              #Month="ngModel"
+              [min]="secondLastDayOfPrevMonth"
+              [max]="lastDayOfPrevMonth"
+              (focus)="picker.open()"
+              required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="f.submitted && Month.errors" class="invalid">
+              <div *ngIf="Month.errors['required']">Month is required</div>
+            </div> -->
+
+            <mat-form-field class="custom-width" appearance="fill">
+              <mat-label>Month</mat-label>
+              <input matInput placeholder="Budgeted Sales" autocomplete="off"
+              name="Month"
+              [(ngModel)]="form.Month"
+              #Month="ngModel"
+              disabled
+              required>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+  <div class="button" style="text-align: center;" >
+
+    <button mat-raised-button color="primary">Submit</button>
+  </div>
+
+  </form>
+

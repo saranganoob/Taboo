@@ -1,0 +1,298 @@
+<h1>EBIT for the Year {{DisplayLastMonthYear}}</h1>
+
+<h2>Operating results : -</h2>
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && Submit()">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">EBITDA</label>
+    <div class="col-sm-10">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        name="ebifinval"
+        [(ngModel)]="form.ebifinval"
+        #ebifinval="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && ebifinval.errors" class="invalid">
+        <div *ngIf="ebifinval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">EBIT</label>
+    <div class="col-sm-10">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="ebidfinval"
+        [(ngModel)]="form.ebidfinval"
+        #ebidfinval="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && ebidfinval.errors" class="invalid">
+        <div *ngIf="ebidfinval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Profit before tax</label>
+    <div class="col-sm-10">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="pbtfinval"
+        [(ngModel)]="form.pbtfinval"
+        #pbtfinval="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && pbtfinval.errors" class="invalid">
+        <div *ngIf="pbtfinval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Tax</label>
+    <div class="col-sm-10">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="taxfinval"
+        [(ngModel)]="form.taxfinval"
+        #taxfinval="ngModel"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && taxfinval.errors" class="invalid">
+        <div *ngIf="taxfinval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Profit after tax</label>
+    <div class="col-sm-10">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="protainval"
+        [(ngModel)]="form.protainval"
+        #protainval="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && protainval.errors" class="invalid">
+        <div *ngIf="protainval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Effective Tax Rate</label>
+    <div class="col-sm-10">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="eftfinval"
+        [(ngModel)]="form.eftfinval"
+        #eftfinval="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && eftfinval.errors" class="invalid">
+        <div *ngIf="eftfinval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <h2>Performance parameters : -</h2>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">EBITDA to revenue from operations</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        name="ebirenoperfinval"
+        [(ngModel)]="form.ebirenoperfinval"
+        #ebirenoperfinval="ngModel"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && ebirenoperfinval.errors" class="invalid">
+        <div *ngIf="ebirenoperfinval.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">PBT to revenue from operations</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="pbtrevope"
+        [(ngModel)]="form.pbtrevope"
+        #pbtrevope="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && pbtrevope.errors" class="invalid">
+        <div *ngIf="pbtrevope.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">EBIT / average capital employed</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="ebitaveempl"
+        [(ngModel)]="form.ebitaveempl"
+        #ebitaveempl="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && ebitaveempl.errors" class="invalid">
+        <div *ngIf="ebitaveempl.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">EPS -Rs.</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="epsrs"
+        [(ngModel)]="form.epsrs"
+        #epsrs="ngModel"
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && epsrs.errors" class="invalid">
+        <div *ngIf="epsrs.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Dividend per share-Rs</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="divpershare"
+        [(ngModel)]="form.divpershare"
+        #divpershare="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && divpershare.errors" class="invalid">
+        <div *ngIf="divpershare.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Dividend payout ratio</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="divpayrati"
+        [(ngModel)]="form.divpayrati"
+        #divpayrati="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && divpayrati.errors" class="invalid">
+        <div *ngIf="divpayrati.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Book value per share-Rs @</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="bookvalpershar"
+        [(ngModel)]="form.bookvalpershar"
+        #bookvalpershar="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && bookvalpershar.errors" class="invalid">
+        <div *ngIf="bookvalpershar.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Market value per share - Rs</label>
+    <div class="col-sm-9">
+
+      <mat-form-field class="custom-width">
+        <mat-label>Fin Value</mat-label>
+        <input matInput placeholder="ie..474" autocomplete="off"
+        onkeypress="return String.fromCharCode(event.charCode).match(/[^.0-9]/g) === null"
+        name="marketvalsha"
+        [(ngModel)]="form.marketvalsha"
+        #marketvalsha="ngModel"
+
+        required>
+      </mat-form-field>
+      <div *ngIf="f.submitted && marketvalsha.errors" class="invalid">
+        <div *ngIf="marketvalsha.errors['required']">This feild is Required</div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div style="text-align: center;">
+    <button mat-raised-button color="primary">Submit</button>
+  </div>
+
+</form>
+

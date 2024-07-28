@@ -1,0 +1,78 @@
+<section class="sidebar-section">
+  <nav id="sidebar" [ngClass]="sidebar ? 'active' : 'inactive'">
+    <div class="sidebar-header">
+      <a href="javascript:void(0);"><img src="./assets/Images/TVSlogo.png"><span>Sundram Fasteners Limited</span> </a>
+    </div>
+
+    <ul mat-nav-list class="menuitems components">
+      <li *ngFor="let menu of menuitems;" [routerLinkActive]="'activeLink'">
+        <ng-container *ngIf="menu.routeUrl; else submenu">
+          <a  href="javascript:void(0);" [routerLink]="menu.routeUrl"  (click)="SetTitle(menu)" [matTooltip]="menu.name" matTooltipPosition="right" matTooltipShowDelay=10 matTooltipHideDelay=400 [matTooltipDisabled]=!sidebar >
+            <i class="material-icons"> {{ menu.icon }} </i> <span>{{ menu.name }}</span>
+          </a>
+        </ng-container>
+        <ng-template #submenu>
+          <a  href="javascript:void(0);" (click)="SetTitle(menu)" [matTooltip]="menu.name" matTooltipPosition="right" matTooltipShowDelay=10 matTooltipHideDelay=400 [matTooltipDisabled]=!sidebar>
+            <i class="material-icons"> {{ menu.icon }} </i> <span>{{ menu.name }}</span>
+          </a>
+          <ul class="submenu" *ngIf="menu.submenu.length > 0">
+            <li *ngFor="let submenu of menu.submenu" [routerLinkActive]="'activeLink'" (click)="SetTitle(menu)">
+              <a href="javascript:void(0)" [routerLink]="submenu.routeUrl">
+                <span>{{ submenu.name }}</span></a>
+            </li>
+          </ul>
+        </ng-template>
+       </li>
+       <li> <a href="javascript:void(0);" (click)="logout()">
+        <i class="material-icons">power_settings_new</i> <span>Logout</span>
+      </a> </li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a href="javascript:void(0);" (click)="toggle()" class="toggle-btn">
+          <span class="material-icons">dehaze</span>
+        </a>
+        <span class="top-head">{{title}}</span>
+        <div class="custom-avatar">
+          <ul class="user-login">
+            <li class="nav-item user-title">
+              <p>{{LoginData.employeename}} </p>
+              <p>{{LoginData.EmployeeType}}</p>
+
+            </li>
+            <li>
+              <img src="./assets/Images/user.jpg">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="mainpage">
+      <router-outlet class="main-contain"></router-outlet>
+    </div>
+  </div>
+</section>
+
+
+<!-- <div style="text-align: center;">
+  <button mat-raised-button color="primary" (click)="scroll()">Submit</button>
+</div> -->
+
+<!-- <div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Collapsed content</h5>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div> -->
+
+
